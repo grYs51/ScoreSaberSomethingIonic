@@ -1,5 +1,7 @@
 {
-  "name": "ScoreSaberSomethingIonic",
-  "integrations": {},
+  "name": "ScoreSaberSomething",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
