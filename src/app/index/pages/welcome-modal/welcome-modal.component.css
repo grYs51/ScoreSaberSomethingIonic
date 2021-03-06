@@ -1,0 +1,21 @@
+/* Without setting height the slides will take up the height of the slide's content */
+ion-slides {
+    height: 100%;
+}
+
+.item-avatar  {     
+    width:100% !important;  
+    height : 100% !important;  
+    max-width: 100px !important;  
+    max-height: 100px !important;
+}
+
+.scrolling-wrapper {
+    -webkit-overflow-scrolling: touch;
+}
+
+.vertical-align {    
+    display: flex !important;
+    align-content: center !important;
+    align-items: center !important;
+}
