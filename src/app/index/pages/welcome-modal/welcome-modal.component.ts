@@ -26,7 +26,7 @@ export class WelcomeModalComponent implements OnInit {
     public userData: UserDataService,
     private toastController: ToastController
   ) {
-    console.log(this.user)
+    console.log(this.user);
   }
 
   ngOnInit(): void {}
@@ -55,9 +55,9 @@ export class WelcomeModalComponent implements OnInit {
               text: 'Add',
               role: 'bottom',
               handler: () => {
-                this.slides.slideTo(1,500)
+                this.slides.slideTo(1, 500);
               },
-            }
+            },
           ],
         });
         toast.present();
@@ -71,9 +71,7 @@ export class WelcomeModalComponent implements OnInit {
 
     if (id) {
       try {
-        this.user = await this.scoreSaberSrv.FetchFullPlayerProfile(
-          id
-        );
+        this.user = await this.scoreSaberSrv.FetchFullPlayerProfile(id);
       } catch (e) {
         console.log('hitting rate-limit');
       }

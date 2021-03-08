@@ -1,8 +1,10 @@
+import { ProfileMethodsService } from './profile-methods.service';
 import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
-import { LocalStorageServiceService } from './../../../Shared/Services/Storage/local-storage-service.service';
+import { LocalStorageService } from '../../../Shared/Services/Storage/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { WelcomeModalComponent } from 'src/app/index/pages/welcome-modal/welcome-modal.component';
+import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-service.service';
 
 @Component({
   templateUrl: './profile.page.html',
@@ -12,24 +14,26 @@ export class ProfilePage implements OnInit {
   constructor(
     private modalController: ModalController,
     public userDataSrv: UserDataService,
-    private localstorage: LocalStorageServiceService
+    private localstorage: LocalStorageService,
+    public profilesrv: ProfileMethodsService
   ) {}
 
   userId: string;
 
   //flags
   hasFullProfileLoaded: boolean = false;
-  isLoading: boolean = false;
+  
 
   //pages
-  pages: number = 1;
-  loadedPages: number = 0;
+  totalPages: number = 1;
+  
 
   ngOnInit(): void {
     if (!this.userDataSrv.User) {
       this.openModal();
     } else {
-      this.pages = Math.ceil(
+      this.userId = this.userDataSrv.User.playerInfo.playerId;
+      this.totalPages = Math.ceil(
         this.userDataSrv.User.scoreStats.totalPlayCount / 8
       );
     }
@@ -45,7 +49,7 @@ export class ProfilePage implements OnInit {
       this.localstorage.StoreUser(data.data);
     });
   }
-  getAllScores() {
-    this.isLoading = true;
+  async getAllScores() {
+    this.profilesrv.GetAllScores(this.userId, this.totalPages)
   }
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  templateUrl: './index.page.html',
-  styleUrls: ['./index.page.css']
+  templateUrl: './index.page.html'
 })
 export class IndexPage implements OnInit {
 
