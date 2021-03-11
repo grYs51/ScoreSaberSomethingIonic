@@ -1,4 +1,4 @@
-import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-service.service';
+import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll } from '@ionic/angular';
 import { IPlayersPage } from 'src/app/Interfaces/ScoreSaber/Search/PlayersPage';

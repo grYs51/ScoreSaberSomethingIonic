@@ -1,5 +1,5 @@
 import { CacheService } from 'ionic-cache';
-import { ScoreSaberService } from './../../../Shared/Services/ScoreSaber/score-saber-service.service';
+import { ScoreSaberService } from '../../../Shared/Services/ScoreSaber/score-saber-api.service';
 import { IStoredUser } from './../../../Interfaces/StoringData/StoreUser';
 import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
 import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';

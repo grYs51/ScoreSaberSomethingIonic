@@ -1,4 +1,4 @@
-import { ScoreSaberService } from './../../Shared/Services/ScoreSaber/score-saber-service.service';
+import { ScoreSaberService } from '../../Shared/Services/ScoreSaber/score-saber-api.service';
 import { IFullProfile } from './../../Interfaces/ScoreSaber/Profile/FullProfile';
 import { ModalController, Platform } from '@ionic/angular';
 import { ISearchPlayerInfo } from './../../Interfaces/ScoreSaber/Search/SearchPlayerInfo';

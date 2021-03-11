@@ -2,7 +2,7 @@ import { ISongScore } from './../../../Interfaces/ScoreSaber/Scores/SongScore';
 import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
 import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
 import { Injectable } from '@angular/core';
-import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-service.service';
+import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
 import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 
 @Injectable({
