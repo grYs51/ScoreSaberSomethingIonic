@@ -25,9 +25,7 @@ export class WelcomeModalComponent implements OnInit {
     private scoreSaberSrv: ScoreSaberService,
     public userData: UserDataService,
     private toastController: ToastController
-  ) {
-    console.log(this.user);
-  }
+  ) { }
 
   ngOnInit(): void {}
   slideOpts = {

@@ -1,10 +1,14 @@
+import { CacheService } from 'ionic-cache';
+import { ScoreSaberService } from './../../../Shared/Services/ScoreSaber/score-saber-service.service';
+import { IStoredUser } from './../../../Interfaces/StoringData/StoreUser';
+import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
+import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
 import { ProfileMethodsService } from './profile-methods.service';
 import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
-import { LocalStorageService } from '../../../Shared/Services/Storage/local-storage.service';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { WelcomeModalComponent } from 'src/app/index/pages/welcome-modal/welcome-modal.component';
-import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './profile.page.html',
@@ -14,29 +18,48 @@ export class ProfilePage implements OnInit {
   constructor(
     private modalController: ModalController,
     public userDataSrv: UserDataService,
-    private localstorage: LocalStorageService,
-    public profilesrv: ProfileMethodsService
+    public profilesrv: ProfileMethodsService,
+    private ionicStorage: IonicStorageService,
+    private toast: ToastController
   ) {}
 
-  userId: string;
+  cacheduser: Observable<IFullProfile>;
+  profileKey: 'profile-cache';
 
+  
+  storedUser: IStoredUser = null;
+  user: IFullProfile = null;
   //flags
   hasFullProfileLoaded: boolean = false;
-  
 
-  //pages
-  totalPages: number = 1;
-  
 
-  ngOnInit(): void {
-    if (!this.userDataSrv.User) {
+  async ngOnInit(): Promise<void> {
+    this.storedUser = await this.ionicStorage.GetUserFromStorage();
+
+    if (!this.storedUser) {
       this.openModal();
     } else {
-      this.userId = this.userDataSrv.User.playerInfo.playerId;
-      this.totalPages = Math.ceil(
-        this.userDataSrv.User.scoreStats.totalPlayCount / 8
-      );
+
+      //caching
+
+      await this.profilesrv.GetProfile(this.storedUser.id);
+      await this.preset(this.storedUser.id);
+
+      
+      let toast = await this.toast.create({
+        position: 'top',
+        message: 'API request Done.',
+        duration: 2000,
+      });
+
+      toast.present();
     }
+  }
+
+  async preset(userid: string) {
+    
+    await this.profilesrv.GetFirstPageTopScore(this.storedUser.id);
+    await this.profilesrv.GetFirstPageRecentScore(this.storedUser.id);
   }
 
   async openModal() {
@@ -46,10 +69,21 @@ export class ProfilePage implements OnInit {
     await modal.present();
 
     modal.onDidDismiss().then((data) => {
-      this.localstorage.StoreUser(data.data);
+      let obj: IFullProfile;
+      obj = data.data;
+      this.preset(obj.playerInfo.playerId);
+      this.storedUser=  this.ionicStorage.StoreUser(obj);
+      
     });
   }
   async getAllScores() {
-    this.profilesrv.GetAllScores(this.userId, this.totalPages)
+    await this.profilesrv.GetAllScores(this.storedUser.id);
+  }
+
+  async doRefresh(event){
+      
+    await this.profilesrv.GetProfile(this.storedUser.id);
+    await this.preset(this.storedUser.id);
+    event.target.complete();
   }
 }

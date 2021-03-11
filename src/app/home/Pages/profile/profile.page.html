@@ -1,135 +1,84 @@
-<ion-content *ngIf="userDataSrv.User">
-  <div class="vertical-padding">
-    <img
-      src="https://new.scoresaber.com{{userDataSrv.User.playerInfo.avatar}}"
-      alt=""
-      class="image-round"
-    />
-    <div class="ion-text-center">
-      <h2>{{userDataSrv.User.playerInfo.playerName}}</h2>
-    </div>
-    <div class="ion-text-center">
-      <img
-        src="https://scoresaber.com/imports/images/flags/{{userDataSrv.User.playerInfo.country| lowercase}}.png"
-      />
-    </div>
+<ion-content>
+
+
+  <ion-refresher (ionRefresh)="doRefresh($event)"  slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <!-- STOREDUSER -->
+  <div class="vertical-padding" *ngIf="storedUser != null">
+    <app-profile-header [name]=storedUser.name [avatar]=storedUser.avatar [country]=storedUser.country ></app-profile-header>
   </div>
 
-  <ion-grid fixed class="border-bottom">
-    <ion-row class="ion-no-padding">
-      <ion-col size="4">
-        <div class="ion-text-center">
-          <span class="text-statics-big text-primary">
-            {{userDataSrv.User.playerInfo.pp}}
-          </span>
-          <br />
-          <small>PP</small>
-        </div>
-      </ion-col>
-      <ion-col size="4">
-        <div class="ion-text-center">
-          <span class="text-statics-big text-primary"
-            >#{{userDataSrv.User.playerInfo.rank}}</span
-          >
-          <br />
-          <small>Rank</small>
-        </div>
-      </ion-col>
-      <ion-col size="4">
-        <div class="ion-text-center">
-          <span class="text-statics-big text-primary">
-            {{userDataSrv.User.scoreStats.averageRankedAccuracy |number:'1.2-2'
-            }}%
-          </span>
-          <br />
-          <small>Ranked Acc</small>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <!-- LIST -->
+  <div *ngIf="userDataSrv.User">
+    <app-profile-sub-header [pp]=userDataSrv.User.playerInfo.pp [rank]=userDataSrv.User.playerInfo.rank [avgAcc]=userDataSrv.User.scoreStats.averageRankedAccuracy ></app-profile-sub-header>
 
-  <ion-grid class="border-bottom">
-    <ion-list class="ion-padding">
-      <ion-item>
-        <ion-label>
-          Country Rank:
-          <span class="ion-float-right ion-padding-end fa">
-            <strong> #{{userDataSrv.User.playerInfo.countryRank}} </strong>
-          </span>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>
-          Ranked maps played:
-          <span class="ion-float-right ion-padding-end fa">
-            <strong> {{userDataSrv.User.scoreStats.rankedPlayCount}} </strong>
-          </span>
-        </ion-label>
-      </ion-item>
-      <div *ngIf="userDataSrv.Scores">
+    <ion-grid class="border-bottom">
+      <ion-list class="ion-no-padding">
         <ion-item>
-          <ion-label
-            >All Songs:
+          <ion-label>
+            Country Rank:
             <span class="ion-float-right ion-padding-end fa">
-              <strong> {{userDataSrv.Scores.length}} </strong>
+              <strong> #{{userDataSrv.User.playerInfo.countryRank}} </strong>
             </span>
           </ion-label>
         </ion-item>
-      </div>
-      <div *ngIf="!userDataSrv.Scores">
         <ion-item>
           <ion-label>
-            <div *ngIf="!profilesrv.isLoading" class="ion-text-center">
-              <ion-button (click)="getAllScores()">
-                get the full profile
-              </ion-button>
-            </div>
-            <div *ngIf="profilesrv.isLoading" class="ion-text-center">
-              <span
-                >Getting Pages
-                <br />{{profilesrv.loadedPages}}/{{totalPages}}</span
-              >
-              <ion-progress-bar
-                value="{{profilesrv.loadedPages / totalPages}}"
-              ></ion-progress-bar>
-            </div>
+            Ranked maps played:
+            <span class="ion-float-right ion-padding-end fa">
+              <strong> {{userDataSrv.User.scoreStats.rankedPlayCount}} </strong>
+            </span>
           </ion-label>
         </ion-item>
-      </div>
-    </ion-list>
-  </ion-grid>
-
-  <ion-grid fixed class="border-bottom-soft">
-    <ion-row>
-      <ion-col size="6">
-        <div class="ion-text-left">
-          <span class="text-bold">Top Scores</span>
+        <div *ngIf="userDataSrv.Scores">
+          <ion-item>
+            <ion-label
+              >All Songs:
+              <span class="ion-float-right ion-padding-end fa">
+                <strong> {{userDataSrv.Scores.length}} </strong>
+              </span>
+            </ion-label>
+          </ion-item>
         </div>
-      </ion-col>
-      <ion-col size="6">
-        <div class="ion-text-right">
-          <ion-button  expand="block" fill="clear" shape="round">
-            show more ...
-          </ion-button>
-
+        <div *ngIf="!userDataSrv.Scores">
+          <ion-item>
+            <ion-label>
+              <div *ngIf="!profilesrv.isLoading" class="ion-text-center">
+                <ion-button (click)="getAllScores()">
+                  get the full profile
+                </ion-button>
+              </div>
+              <div *ngIf="profilesrv.isLoading" class="ion-text-center">
+                <span
+                  >Getting Pages
+                  <br />{{profilesrv.loadedPages}}/{{profilesrv.totalPages}}</span
+                >
+                <ion-progress-bar
+                  value="{{profilesrv.loadedPages / profilesrv.totalPages}}"
+                ></ion-progress-bar>
+              </div>
+            </ion-label>
+          </ion-item>
         </div>
-      </ion-col>
-    </ion-row>
+      </ion-list>
+    </ion-grid>
+  </div>
 
-    <ion-row class="ion-no-padding">
-      <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
-        <ion-slide *ngFor="let card of [0,1,2,3,4,5,6]" class="ion-no-padding" style="width: 150px; height: 200px;">
-          <ion-col>
-            <ion-label>Card #{{ card }}</ion-label>
-            <ion-img style="pointer-events:none" src="https://via.placeholder.com/150"></ion-img>
-          </ion-col>
-        </ion-slide>
-      </ion-slides>
-    </ion-row>
-  </ion-grid>
-  
+  <!-- TOPSONGS -->
+  <div *ngIf="profilesrv.TopScore">
+    <app-slider-songs [songs]=profilesrv.TopScore [name]="'Top Score'"></app-slider-songs>
+  </div>
+
+  <!-- RECENTSONGS -->
+  <div *ngIf="profilesrv.RecentScore">
+    <app-slider-songs [songs]=profilesrv.RecentScore [name]="'Recent Score'"></app-slider-songs>
+  </div>
 
 
+  <!-- CARD -->
   <!-- <ion-card >
     <ion-card-content class="ion-no-padding">
       <ion-list class="ion-no-padding" lines="none">

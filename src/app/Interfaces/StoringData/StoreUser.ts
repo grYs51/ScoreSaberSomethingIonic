@@ -1,8 +1,7 @@
-import { ISongScore } from '../ScoreSaber/Scores/SongScore';
-import { IFullProfile } from './../ScoreSaber/Profile/FullProfile';
+export interface IStoredUser{
+  id: string,
+  name: string,
+  avatar: string,
+  country: string
 
-export interface IStoreFullUser {
-  User: IFullProfile;
-  Date: Date;
-  Scores: ISongScore[] | null;
 }

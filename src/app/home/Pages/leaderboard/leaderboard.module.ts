@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../../components/components.module';
 import { LeaderboardPage } from './leaderboard.page';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
   declarations: [LeaderboardPage]
 })
