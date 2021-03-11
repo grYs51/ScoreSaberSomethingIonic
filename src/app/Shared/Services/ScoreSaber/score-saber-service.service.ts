@@ -74,11 +74,20 @@ export class ScoreSaberService {
     );
   }
 
+  public FetchGlobalPlayers<IPlayersPage>(
+    page: number
+  ): Promise<IPlayersPage> {
+    return this.fetchData<IPlayersPage>(
+      `${this.SCORESABER_API_BASEURL}players/${page}`
+    );
+  }
+
   private async fetchData<T>(
     url: string,
     retries = 3,
     timeout = 0
-  ): Promise<T> {if (retries > 0) {
+  ): Promise<T> {
+    if (retries > 0) {
       if (timeout != 0) {
         console.log('Rate-limited: ', timeout / 1000 + 's');
         await timer(timeout).pipe(take(1)).toPromise();
@@ -90,7 +99,6 @@ export class ScoreSaberService {
           return res.body;
         })
         .catch((e: HttpErrorResponse) => {
-          console.log(e);
           if (e.status == 429) {
             let time = Math.ceil(
               Number(e.headers.get('x-ratelimit-reset')) - Date.now() / 1000

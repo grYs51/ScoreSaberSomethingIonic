@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CacheService } from 'ionic-cache';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,5 +15,8 @@ export class AppComponent {
     // { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(cache: CacheService) {
+    cache.setDefaultTTL(60 * 2);
+    cache.setOfflineInvalidate(false);
+  }
 }
