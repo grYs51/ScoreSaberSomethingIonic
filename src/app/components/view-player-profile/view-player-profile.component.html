@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="dismiss()">
+      <ion-back-button defaultHref=""></ion-back-button>
+      <ion-title>{{ user.playerName | titlecase }}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- HEADER -->
+    <div>
+        <app-profile-header [name]=user.playerName [avatar]=user.avatar [country]=user.country ></app-profile-header>
+    </div>
+
+    <!-- SUBHEADER -->
+    <div *ngIf="fetchedUser" >
+        <app-profile-sub-header [pp]=user.pp [rank]=user.rank [avgAcc]=fetchedUser.scoreStats.averageRankedAccuracy ></app-profile-sub-header>
+    </div>
+
+    <!-- TOPSCORES -->
+    <div *ngIf="topScore" >
+        <app-slider-songs [songs]=topScore [name]="'Top Score'"></app-slider-songs>
+    </div>
+
+    <!-- RECENTSCORES -->
+    <div *ngIf="recentScore" >
+        <app-slider-songs [songs]=recentScore [name]="'Recent Score'"></app-slider-songs>
+    </div>
+    
+
+</ion-content>
