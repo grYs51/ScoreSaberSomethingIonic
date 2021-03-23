@@ -1,0 +1,51 @@
+<div class="card ion-activatable ripple-parent" (click)="showMap()">
+  <ion-ripple-effect></ion-ripple-effect>
+
+  <!-- IMAGE -->
+  <div class="cover">
+    <div role="img" class="q-img overflow-hidden">
+      <img
+        style="width: 120px; border-radius: 5px"
+        src="https://beatsaver.com{{ map.coverURL }}"
+      />
+      <div class="q-img__content"></div>
+    </div>
+    <div class="rating" [ngClass]="setRatingColor()">
+      {{ map.stats.rating | ratingDecimal }}
+    </div>
+  </div>
+
+  <!-- DETAILS -->
+  <div class="detail-container panel">
+    <div class="detail">
+      <div class="description">
+        <div class="song-title">
+          <div>
+            {{ map.metadata.songName }}
+            <span class="song-subname">{{
+              map.metadata.songSubName ? " - " + map.metadata.songSubName : ""
+            }}</span>
+          </div>
+        </div>
+        <div class="song-meta">
+          <div class="song-author">
+            <span href="" class="light">
+              {{ map.metadata.songAuthorName }}
+            </span>
+          </div>
+          <div class="song-date">{{ datenow }}</div>
+        </div>
+      </div>
+      <div class="tags">
+        <div *ngFor="let item of [0, 1, 2, 3, 4]">
+          <div
+            class="row inline no-wrap items-center tag"
+            [ngClass]="hasDiff(item) ? returnDiff(item) : 'noDiff color'"
+          >
+            <div class="col row no-wrap items-center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

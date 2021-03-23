@@ -10,7 +10,7 @@ import { CacheModule } from "ionic-cache";
 import { ComponentsModule } from './components/components.module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -19,9 +19,10 @@ import { ComponentsModule } from './components/components.module';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     CacheModule.forRoot({ keyPrefix: 'scoresaber-cache' }),
-    ComponentsModule
+    ComponentsModule,
+    
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },IonicStorageModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },IonicStorageModule,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

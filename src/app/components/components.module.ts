@@ -7,16 +7,21 @@ import { ViewPlayerProfileComponent } from './view-player-profile/view-player-pr
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-header.component';
 import { SliderSongsComponent } from './slider-songs/slider-songs.component';
-
+import { BeatMapItemComponent } from './BeatSaver/beat-map-item/beat-map-item.component';
+import { BeatMapPagePage } from './BeatSaver/beat-map-page/beat-map-page.page';
+import { PipesModule } from '../pipes/pipes.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [PlayerItemComponent, ViewPlayerProfileComponent, ProfileHeaderComponent, ProfileSubHeaderComponent, SliderSongsComponent],
+  declarations: [PlayerItemComponent, ViewPlayerProfileComponent, ProfileHeaderComponent, ProfileSubHeaderComponent, SliderSongsComponent,BeatMapPagePage, BeatMapItemComponent],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    PipesModule,
+    FormsModule
   ],
-  exports: [PlayerItemComponent, ProfileHeaderComponent, ProfileSubHeaderComponent,SliderSongsComponent],
+  exports: [PlayerItemComponent, ProfileHeaderComponent, ProfileSubHeaderComponent,SliderSongsComponent, BeatMapItemComponent, BeatMapItemComponent],
   providers: [NativePageTransitions]
 })
 export class ComponentsModule { }

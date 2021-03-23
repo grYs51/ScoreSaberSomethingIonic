@@ -1,7 +1,5 @@
-import { IBeatSaverMap } from './../../../Interfaces/BeatSaver/BeatsaverMap';
 import { Injectable } from '@angular/core';
 import { RateLimitService } from '../Extenstions/rate-limit.service';
-import { HttpParameterCodec } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +17,7 @@ export class BeatsaverApiService {
     return this.rateLimitSrv.fetchData<IBeatSavermaplist>(`${this.BEATSAVER_API_BASEURL}maps/rating/${page}`);
   }
 
-  FetchMapsByUploader<IBeatSavermaplist>(id : string ,page : number = 0) : Promise<IBeatSavermaplist>{
+  FetchMapsByUploader<IBeatSavermaplist>( page : number = 0, id : string) : Promise<IBeatSavermaplist>{
     return this.rateLimitSrv.fetchData<IBeatSavermaplist>(`${this.BEATSAVER_API_BASEURL}maps/uploader/${id}/${page}`);
   }
 
@@ -35,10 +33,9 @@ export class BeatsaverApiService {
     return this.rateLimitSrv.fetchData<IBeatSavermaplist>(`${this.BEATSAVER_API_BASEURL}maps/plays/${page}`);
   }
 
-  FetchMapsBySearch<IBeatSavermaplist>(text : string, page : number = 0, automapper: number = 1) : Promise<IBeatSavermaplist>{
+  FetchMapsBySearch<IBeatSavermaplist>(page : number = 0, text : string,  automapper: number = 1) : Promise<IBeatSavermaplist>{
     return this.rateLimitSrv.fetchData<IBeatSavermaplist>(`${this.BEATSAVER_API_BASEURL}search/text/${page}?q=${encodeURIComponent(text)}&?automapper=${automapper}`);
   }
-
 
 
   FetchMapByKey<IBeatSaverMap>(key : string) : Promise<IBeatSaverMap>{
@@ -48,7 +45,4 @@ export class BeatsaverApiService {
   FetchMapByHash<IBeatSaverMap>(hash : string) : Promise<IBeatSaverMap>{
     return this.rateLimitSrv.fetchData<IBeatSaverMap>(`${this.BEATSAVER_API_BASEURL}maps/by-hash/${hash}`);
   }
-  
-  
-
 }
