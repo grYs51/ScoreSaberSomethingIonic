@@ -4,8 +4,10 @@ import { ModalController, Platform } from '@ionic/angular';
 import { ISearchPlayerInfo } from './../../Interfaces/ScoreSaber/Search/SearchPlayerInfo';
 import { Component, Input, OnInit } from '@angular/core';
 import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
-import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
-
+import {
+  NativePageTransitions,
+  NativeTransitionOptions,
+} from '@ionic-native/native-page-transitions/ngx';
 
 @Component({
   // selector: 'app-view-player-profile',
@@ -22,15 +24,10 @@ export class ViewPlayerProfileComponent implements OnInit {
   constructor(
     private nativePageTransitions: NativePageTransitions,
     private viewCtrl: ModalController,
-    private scoresaberSrv: ScoreSaberService,
-    private platform: Platform
-    
+    private scoresaberSrv: ScoreSaberService
   ) {}
 
   async ngOnInit(): Promise<void> {
-
-    
-
     this.fetchedUser = await this.scoresaberSrv.FetchFullPlayerProfile(
       this.user.playerId
     );
@@ -51,7 +48,7 @@ export class ViewPlayerProfileComponent implements OnInit {
       slowdownfactor: -1,
       iosdelay: 50,
     };
-    
+
     this.nativePageTransitions.slide(options);
     this.viewCtrl.dismiss();
   }

@@ -1,21 +1,3 @@
-<!-- <ion-item lines="none">
-  <ion-grid>
-
-
-  </ion-grid>
-  <p slot= "start" style="overflow: hidden;">{{player.rank}}</p>
-  <ion-thumbnail slot="start">
-    <img src="https://new.scoresaber.com{{ player.avatar }}" />
-  </ion-thumbnail>
-  <ion-label text-wrap>
-    <h2>{{ player.playerName }}</h2>
-  </ion-label>
-
-  <ion-button (click)="viewPlayer()" fill="clear" color="dark">
-    <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
-  </ion-button>
-</ion-item> -->
-
 <ion-row class="ion-align-items-center ion-justify-content-center">
   <ion-col size="1.6">
     <strong>#{{ player.rank }}</strong>
@@ -28,6 +10,7 @@
   <ion-col class="ion-no-padding">
     <div>
       <span>
+        <img src="https://new.scoresaber.com/api/static/flags/{{ player.country | lowercase}}.png">
         <strong style="font-size: large">
           {{ player.playerName }}
         </strong>

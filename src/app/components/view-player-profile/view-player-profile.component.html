@@ -8,8 +8,9 @@
 </ion-header>
 
 <ion-content>
+  
     <!-- HEADER -->
-    <div>
+    <div class="ion-text-center animate__animated animate__fadeIn animate__fast">
         <app-profile-header [name]=user.playerName [avatar]=user.avatar [country]=user.country ></app-profile-header>
     </div>
 
@@ -27,6 +28,6 @@
     <div *ngIf="recentScore" >
         <app-slider-songs [songs]=recentScore [name]="'Recent Score'"></app-slider-songs>
     </div>
-    
+ 
 
 </ion-content>

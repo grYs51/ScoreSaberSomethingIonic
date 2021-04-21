@@ -1,5 +1,7 @@
+import { UserDataService } from './Shared/Services/ScoreSaber/user-data.service';
 import { Component } from '@angular/core';
 import { CacheService } from 'ionic-cache';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,15 +9,18 @@ import { CacheService } from 'ionic-cache';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Leaderboard', url: 'home/leaderboard', icon: 'mail' },
-    { title: 'Maps', url: 'home/maps', icon: 'paper-plane' },
+    { title: 'Leaderboard', url: 'home/leaderboard', icon: 'diamond' },
+    { title: 'Maps', url: 'home/maps', icon: 'folder' },
     { title: 'Ranked Maps', url: 'home/ranked_maps', icon: 'heart' },
-    { title: 'Profile', url: 'home/profile', icon: 'archive' },
-    { title: 'Friends', url: 'home/friends', icon: 'trash' },
-    // { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    { title: 'Profile', url: 'home/profile', icon: 'person' },
+    { title: 'Friends', url: 'home/friends', icon: 'people' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(cache: CacheService) {
+
+  public otherAppPages = [
+    { title: 'Settings', url: 'settings', icon: 'settings' },
+  ];
+  
+  constructor(cache: CacheService, public userdata: UserDataService) {
     cache.setDefaultTTL(60 * 2);
     cache.setOfflineInvalidate(false);
   }

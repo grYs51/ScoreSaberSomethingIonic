@@ -26,12 +26,10 @@ export class ProfilePage implements OnInit {
   cacheduser: Observable<IFullProfile>;
   profileKey: 'profile-cache';
 
-  
   storedUser: IStoredUser = null;
   user: IFullProfile = null;
   //flags
   hasFullProfileLoaded: boolean = false;
-
 
   async ngOnInit(): Promise<void> {
     this.storedUser = await this.ionicStorage.GetUserFromStorage();
@@ -39,13 +37,11 @@ export class ProfilePage implements OnInit {
     if (!this.storedUser) {
       this.openModal();
     } else {
-
       //caching
 
       await this.profilesrv.GetProfile(this.storedUser.id);
       await this.preset(this.storedUser.id);
 
-      
       let toast = await this.toast.create({
         position: 'top',
         message: 'API request Done.',
@@ -57,7 +53,6 @@ export class ProfilePage implements OnInit {
   }
 
   async preset(userid: string) {
-    
     await this.profilesrv.GetFirstPageTopScore(this.storedUser.id);
     await this.profilesrv.GetFirstPageRecentScore(this.storedUser.id);
   }
@@ -72,16 +67,14 @@ export class ProfilePage implements OnInit {
       let obj: IFullProfile;
       obj = data.data;
       this.preset(obj.playerInfo.playerId);
-      this.storedUser=  this.ionicStorage.StoreUser(obj);
-      
+      this.storedUser = this.ionicStorage.StoreUser(obj);
     });
   }
   async getAllScores() {
     await this.profilesrv.GetAllScores(this.storedUser.id);
   }
 
-  async doRefresh(event){
-      
+  async doRefresh(event) {
     await this.profilesrv.GetProfile(this.storedUser.id);
     await this.preset(this.storedUser.id);
     event.target.complete();

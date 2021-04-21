@@ -14,15 +14,30 @@
         <ion-icon slot="icon-only" name="add" color="medium"> </ion-icon>
       </ion-button>
     </div>
+    <ion-button
+      style="position: absolute; top: -50px; left: 3%"
+      [color]="buttonExtraClicked == true ? 'dark' : 'light' "
+      (click)="buttonExtraClicked = !buttonExtraClicked"
+      >{{buttonExtraClicked ? "Stats" : "Extra"}}</ion-button
+    >
+    <ion-button
+      style="position: absolute; top: -50px; right: 3%"
+      color="dark"
+      (click)="openUrl()"
+    >
+      Preview
+    </ion-button>
     <br />
 
     <!-- TITLE -->
-    <ion-card-content class="ion-text-center">
+    <ion-card-content
+      *ngIf="!buttonExtraClicked"
+      class="ion-text-center animate__animated animate__slideInUp animate__fast"
+    >
       <div class="border-bottom">
         <h2>{{map.name}}</h2>
         <ion-text color="medium">
           <div style="display: flex" class="ion-justify-content-center">
-            <!-- <p>{{map.metadata.songAuthorName}}</p> -->
             <p>{{ map.metadata.levelAuthorName }} - <small>{{date}}</small></p>
           </div>
         </ion-text>
@@ -171,6 +186,27 @@
             </ion-item>
           </ion-list>
         </div>
+      </div>
+    </ion-card-content>
+    <ion-card-content
+      *ngIf="buttonExtraClicked"
+      class="ion-text-center animate__animated animate__fadeIn animate__fast"
+    >
+      <div class="border-bottom">
+        <h2>{{map.name}}</h2>
+        <ion-text color="medium">
+          <div style="display: flex" class="ion-justify-content-center">
+            <p>Key: {{ map.key }}</p>
+          </div>
+        </ion-text>
+      </div>
+      <div>
+        <h4 class=""><strong>Description</strong></h4>
+        <br />
+
+        <p
+          innerHTML='{{ map.description == "" ? "No description given..." : map.description | replaceLineBreaks }}'
+        ></p>
       </div>
     </ion-card-content>
   </ion-card>

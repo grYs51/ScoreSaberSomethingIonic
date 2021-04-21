@@ -40,7 +40,7 @@
     <div *virtualItem="let item;let i = index">
       <ion-row class="ion-nowrap">
         <ion-col  *ngFor="let j of item;">
-          <ion-card>
+          <ion-card >
             <app-beat-map-item
               [map]="maps.docs[j]"
               *ngIf="maps.docs[j] != undefined"

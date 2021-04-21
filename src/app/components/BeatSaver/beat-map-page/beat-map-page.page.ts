@@ -17,16 +17,17 @@ export class BeatMapPagePage implements OnInit {
   select;
   selected;
   selectedCharacteristic = 0;
+  buttonExtraClicked : boolean = false;
 
   constructor(
     private nativePageTransitions: NativePageTransitions,
     private viewCtrl: ModalController
   ) {}
-    Info = null
+  Info = null;
   ngOnInit(): void {
     for (let i = 0; i < this.map.metadata.characteristics.length; i++) {
-      if(this.map.metadata.characteristics[i].name == CharacteristicEnum[0] )
-      this.selectedCharacteristic = i;
+      if (this.map.metadata.characteristics[i].name == CharacteristicEnum[0])
+        this.selectedCharacteristic = i;
     }
   }
 
@@ -46,14 +47,17 @@ export class BeatMapPagePage implements OnInit {
     if (this.selectedCharacteristic != charistic) {
       this.selectedCharacteristic = charistic;
       this.select = null;
-      this.selected = null
+      this.selected = null;
     }
   }
-  onChangeObj(value){
+  onChangeObj(value) {
     this.selected = value.charAt(0).toLowerCase() + value.slice(1);
-    if(value == "Expertplus"){
-      this.selected = "expertPlus";
-    } 
+    if (value == 'Expertplus') {
+      this.selected = 'expertPlus';
+    }
+  }
+  openUrl(){
+    window.open(`https://skystudioapps.com/bs-viewer/?id=${this.map.key}`)
   }
 }
 
