@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 // TODO: temporarily
 
 export class OldScoreSaberApiService {
+  // tslint:disable-next-line: variable-name
   constructor(private _http: HttpClient) {}
 
   getLeaderBoard() {

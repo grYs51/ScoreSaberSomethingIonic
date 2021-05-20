@@ -3,211 +3,41 @@
 </ion-buttons>
 
 <ion-content>
-  <ion-card
-    color="light"
-    class="cardhead"
-    style="height: 100%; border-radius: 20px"
-  >
+  <ion-card color="light" class="cardhead" style="height: 100%; border-radius: 20px">
     <div class="img-wrapper">
       <img src="https://beatsaver.com{{ map.coverURL }}" />
       <ion-button color="light">
         <ion-icon slot="icon-only" name="add" color="medium"> </ion-icon>
       </ion-button>
     </div>
-    <ion-button
-      style="position: absolute; top: -50px; left: 3%"
-      [color]="buttonExtraClicked == true ? 'dark' : 'light' "
-      (click)="buttonExtraClicked = !buttonExtraClicked"
-      >{{buttonExtraClicked ? "Stats" : "Extra"}}</ion-button
-    >
-    <ion-button
-      style="position: absolute; top: -50px; right: 3%"
-      color="dark"
-      (click)="openUrl()"
-    >
+    <ion-button style="position: absolute; top: -50px; left: 3%"
+      [color]="buttonExtraClicked == true ? 'dark' : 'light' " (click)="buttonExtraClicked = !buttonExtraClicked">
+      {{buttonExtraClicked ? "Stats" : "Extra"}}</ion-button>
+    <ion-button style="position: absolute; top: -50px; right: 3%" color="dark" (click)="openUrl()">
       Preview
     </ion-button>
     <br />
 
     <!-- TITLE -->
-    <ion-card-content
-      *ngIf="!buttonExtraClicked"
-      class="ion-text-center animate__animated animate__slideInUp animate__fast"
-    >
-      <div class="border-bottom">
-        <h2>{{map.name}}</h2>
-        <ion-text color="medium">
-          <div style="display: flex" class="ion-justify-content-center">
-            <p>{{ map.metadata.levelAuthorName }} - <small>{{date}}</small></p>
-          </div>
-        </ion-text>
-      </div>
+    <ion-card-content *ngIf="!buttonExtraClicked"
+      class="ion-text-center animate__animated animate__slideInUp animate__fast">
+      <!-- TITLE -->
+      <beatsaver-title [name]="map.name" [levelAuthorName]="map.metadata.levelAuthorName" [date]="date"></beatsaver-title>
 
       <!-- SMALL INFO -->
-      <div class="border-bottom">
-        <ion-grid fixed class="ion-no-padding">
-          <ion-row>
-            <ion-col size="6">
-              <ion-card class="ion-no-padding caesd">
-                <ion-item color="tertiary" lines="none">
-                  <ion-icon name="hourglass" slot="start"></ion-icon>
-                  <p name="info" slot="end">{{map.metadata.duration}}</p>
-                </ion-item>
-                <ion-item color="tertiary" lines="none">
-                  <ion-label> Duration </ion-label>
-                </ion-item>
-              </ion-card>
-            </ion-col>
-            <ion-col size="6">
-              <ion-card>
-                <ion-item color="tertiary" lines="none">
-                  <ion-icon name="cafe" slot="start"></ion-icon>
-                  <p name="play" slot="end">
-                    {{map.metadata.bpm | number: "1.0-0"}}
-                  </p>
-                </ion-item>
-                <ion-item color="tertiary" lines="none">
-                  <ion-label> Bpm </ion-label>
-                </ion-item>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-card class="ion-no-padding caesd">
-                <ion-item color="tertiary" lines="none">
-                  <ion-icon name="cloud-download" slot="start"></ion-icon>
-                  <p name="info" slot="end">{{map.stats.downloads}}</p>
-                </ion-item>
-                <ion-item color="tertiary" lines="none">
-                  <ion-label> Downloads </ion-label>
-                </ion-item>
-              </ion-card>
-            </ion-col>
-            <ion-col size="6">
-              <ion-card>
-                <ion-item color="tertiary" lines="none">
-                  <ion-icon name="cafe" slot="start"></ion-icon>
-                  <p name="heart" slot="end">
-                    <span>Up: {{map.stats.upVotes}}</span><br /><span
-                      >Down: {{map.stats.downVotes}}
-                    </span>
-                  </p>
-                </ion-item>
-                <ion-item color="tertiary" lines="none">
-                  <ion-label> Rating </ion-label>
-                </ion-item>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-
+      <beatsaver-small-info [duration]="map.metadata.duration" [bpm]="map.metadata.bpm" [stats]="map.stats"></beatsaver-small-info>
       <!-- SLIDER -->
-      <div>
-        <ion-row class="ion-no-padding">
-          <ion-col fixed class="border-bottom-soft">
-            <ion-slides
-              [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
-            >
-              <ion-slide
-                *ngFor="let characteristic of map.metadata.characteristics; let i = index"
-                class="ion-no-padding"
-                style="width: auto; height: 40px"
-              >
-                <ion-col>
-                  <ion-button
-                    *ngIf="characteristic != null"
-                    [color]="characteristic.name"
-                    (click)="filterButton(i)"
-                    [color]="i == selectedCharacteristic ? 'dark' : 'light'"
-                    shape="round"
-                  >
-                    {{ characteristic.name }}
-                  </ion-button>
-                </ion-col>
-              </ion-slide>
-            </ion-slides>
-          </ion-col>
-        </ion-row>
-      </div>
 
       <!-- CONTENT CHAR -->
-      <div>
-        <ion-item>
-          <ion-label>Difficulty</ion-label>
-          <ion-select
-            [(ngModel)]="select"
-            (ngModelChange)="onChangeObj($event)"
-            interface="popover"
-          >
-            <template
-              *ngFor="let diffSpecific of map.metadata.characteristics[selectedCharacteristic].difficulties | keyvalue; let i = index"
-            >
-              <ion-select-option *ngIf="diffSpecific.value"
-                ><b>{{ diffSpecific.key | titlecase }}</b></ion-select-option
-              >
-            </template>
-          </ion-select>
-        </ion-item>
-        <div *ngIf="selected">
-          <ion-list class="ion-no-padding">
-            <ion-item>
-              <ion-label>
-                Notes:
-                <span class="ion-float-right ion-padding-end fa">
-                  <strong>
-                    {{map.metadata.characteristics[selectedCharacteristic].difficulties[selected].notes}}
-                    ({{map.metadata.characteristics[selectedCharacteristic].difficulties[selected].notes
-                    / this.map.metadata.duration | number: "1.2-2"}} n/s)
-                  </strong>
-                </span>
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                Bombs
-                <span class="ion-float-right ion-padding-end fa">
-                  <strong>
-                    {{map.metadata.characteristics[selectedCharacteristic].difficulties[selected].bombs}}
-                  </strong>
-                </span>
-              </ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                Njs
-                <span class="ion-float-right ion-padding-end fa">
-                  <strong>
-                    {{map.metadata.characteristics[selectedCharacteristic].difficulties[selected].njs}}
-                  </strong>
-                </span>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-        </div>
-      </div>
-    </ion-card-content>
-    <ion-card-content
-      *ngIf="buttonExtraClicked"
-      class="ion-text-center animate__animated animate__fadeIn animate__fast"
-    >
-      <div class="border-bottom">
-        <h2>{{map.name}}</h2>
-        <ion-text color="medium">
-          <div style="display: flex" class="ion-justify-content-center">
-            <p>Key: {{ map.key }}</p>
-          </div>
-        </ion-text>
-      </div>
-      <div>
-        <h4 class=""><strong>Description</strong></h4>
-        <br />
+      <beatsaver-bottom-info [characteristics]="map.metadata.characteristics" [duration]="map.metadata.duration"></beatsaver-bottom-info>
 
-        <p
-          innerHTML='{{ map.description == "" ? "No description given..." : map.description | replaceLineBreaks }}'
-        ></p>
-      </div>
+    </ion-card-content>
+    <ion-card-content *ngIf="buttonExtraClicked"
+      class="ion-text-center animate__animated animate__fadeIn animate__fast">
+
+      <!-- DESCRIPTION -->
+      <beatsaver-description [name]="map.name" [key]="map.key" [description]="map.description"></beatsaver-description>
+    
     </ion-card-content>
   </ion-card>
 </ion-content>

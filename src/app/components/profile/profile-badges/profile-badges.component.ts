@@ -22,15 +22,14 @@ export class ProfileBadgesComponent implements OnInit {
   getAverage() {
     this.averageScore = this.rankedMaps.reduce(
       (p, c) =>
-        p + c.score, 0)
-      / this.rankedMaps.reduce(
+        p + c.score, 0) / this.rankedMaps.reduce(
         (p, c) =>
           p + c.maxScore, 0);
     console.log(this.averageScore);
   }
 
   getRankedMaps() {
-    this.rankedMaps = this.Scores.filter(x => x.weight > 0);
+    this.rankedMaps = Object.values(this.Scores).filter(s => s.pp > 0);
   }
 
 }

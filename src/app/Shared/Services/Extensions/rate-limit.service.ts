@@ -11,7 +11,8 @@ import { take } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class RateLimitService {
-  constructor(private _http: HttpClient) {}
+  // tslint:disable-next-line: variable-name
+  constructor(private _http: HttpClient) { }
 
   async fetchData<T>(url: string, retries = 3, timeout = 0): Promise<T> {
     if (retries > 0) {

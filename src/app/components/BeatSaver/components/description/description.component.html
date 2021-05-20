@@ -1,0 +1,15 @@
+<div class="border-bottom">
+    <h2>{{name}}</h2>
+    <ion-text color="medium">
+      <div style="display: flex" class="ion-justify-content-center">
+        <p>Key: {{ key }}</p>
+      </div>
+    </ion-text>
+  </div>
+  <div>
+    <h4 class=""><strong>Description</strong></h4>
+    <br />
+
+    <p innerHTML='{{ description == "" ? "No description given..." : description | replaceLineBreaks }}'>
+    </p>
+  </div>

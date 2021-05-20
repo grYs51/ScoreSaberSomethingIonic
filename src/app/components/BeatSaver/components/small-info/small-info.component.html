@@ -1,0 +1,57 @@
+<div class="border-bottom">
+    <ion-grid fixed class="ion-no-padding">
+        <ion-row>
+            <ion-col size="6">
+                <ion-card class="ion-no-padding caesd">
+                    <ion-item color="tertiary" lines="none">
+                        <ion-icon name="hourglass" slot="start"></ion-icon>
+                        <p name="info" slot="end">{{duration}}</p>
+                    </ion-item>
+                    <ion-item color="tertiary" lines="none">
+                        <ion-label> Duration </ion-label>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+            <ion-col size="6">
+                <ion-card>
+                    <ion-item color="tertiary" lines="none">
+                        <ion-icon name="cafe" slot="start"></ion-icon>
+                        <p name="play" slot="end">
+                            {{bpm | number: "1.0-0"}}
+                        </p>
+                    </ion-item>
+                    <ion-item color="tertiary" lines="none">
+                        <ion-label> Bpm </ion-label>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6">
+                <ion-card class="ion-no-padding caesd">
+                    <ion-item color="tertiary" lines="none">
+                        <ion-icon name="cloud-download" slot="start"></ion-icon>
+                        <p name="info" slot="end">{{stats.downloads}}</p>
+                    </ion-item>
+                    <ion-item color="tertiary" lines="none">
+                        <ion-label> Downloads </ion-label>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+            <ion-col size="6">
+                <ion-card>
+                    <ion-item color="tertiary" lines="none">
+                        <ion-icon name="cafe" slot="start"></ion-icon>
+                        <p name="heart" slot="end">
+                            <span>Up: {{stats.upVotes}}</span><br /><span>Down: {{stats.downVotes}}
+                            </span>
+                        </p>
+                    </ion-item>
+                    <ion-item color="tertiary" lines="none">
+                        <ion-label> Rating </ion-label>
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

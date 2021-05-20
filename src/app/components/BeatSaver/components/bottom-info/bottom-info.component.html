@@ -1,0 +1,66 @@
+<div>
+    <ion-row class="ion-no-padding">
+        <ion-col fixed class="border-bottom-soft">
+            <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+                <ion-slide *ngFor="let characteristic of characteristics; let i = index" class="ion-no-padding"
+                    style="width: auto; height: 40px">
+                    <ion-col>
+                        <ion-button *ngIf="characteristic != null" [color]="characteristic.name"
+                            (click)="filterButton(i)" [color]="i == selectedCharacteristic ? 'dark' : 'light'"
+                            shape="round">
+                            {{ characteristic.name }}
+                        </ion-button>
+                    </ion-col>
+                </ion-slide>
+            </ion-slides>
+        </ion-col>
+    </ion-row>
+</div>
+
+<div>
+    <ion-item>
+        <ion-label>Difficulty</ion-label>
+        <ion-select [(ngModel)]="select" (ngModelChange)="onChangeObj($event)" interface="popover">
+            <template
+                *ngFor="let diffSpecific of characteristics[selectedCharacteristic].difficulties | keyvalue; let i = index">
+                <ion-select-option  *ngIf="diffSpecific.value"><b>{{ diffSpecific.key | titlecase }}</b></ion-select-option>
+            </template>
+        </ion-select>
+    </ion-item>
+    <div *ngIf="selected">
+        <ion-list class="ion-no-padding">
+            <ion-item>
+                <ion-label>
+                    Notes:
+                    <span class="ion-float-right ion-padding-end fa">
+                        <strong>
+                            {{characteristics[selectedCharacteristic].difficulties[selected].notes}}
+                            ({{characteristics[selectedCharacteristic].difficulties[selected].notes
+                            / duration | number: "1.2-2"}} n/s)
+                        </strong>
+                    </span>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    Bombs
+                    <span class="ion-float-right ion-padding-end fa">
+                        <strong>
+                            {{characteristics[selectedCharacteristic].difficulties[selected].bombs}}
+                        </strong>
+                    </span>
+                </ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                    Njs
+                    <span class="ion-float-right ion-padding-end fa">
+                        <strong>
+                            {{characteristics[selectedCharacteristic].difficulties[selected].njs}}
+                        </strong>
+                    </span>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+</div>

@@ -24,12 +24,8 @@ export class BeatMapPagePage implements OnInit {
     private viewCtrl: ModalController
   ) {}
   Info = null;
+
   ngOnInit(): void {
-    for (let i = 0; i < this.map.metadata.characteristics.length; i++) {
-      if (this.map.metadata.characteristics[i].name === CharacteristicEnum[0]) {
-        this.selectedCharacteristic = i;
-      }
-    }
   }
 
   dismiss() {
@@ -44,27 +40,9 @@ export class BeatMapPagePage implements OnInit {
     this.viewCtrl.dismiss();
   }
 
-  filterButton(characteristic: number) {
-    if (this.selectedCharacteristic !== characteristic) {
-      this.selectedCharacteristic = characteristic;
-      this.select = null;
-      this.selected = null;
-    }
-  }
-  onChangeObj(value) {
-    this.selected = value.charAt(0).toLowerCase() + value.slice(1);
-    if (value === 'Expertplus') {
-      this.selected = 'expertPlus';
-    }
-  }
   openUrl(){
     window.open(`https://skystudioapps.com/bs-viewer/?id=${this.map.key}`);
   }
 }
 
-enum CharacteristicEnum {
-  Standard,
-  NoArrows,
-  Lightshow,
-  Lawless,
-}
+
