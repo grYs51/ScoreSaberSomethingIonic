@@ -1,4 +1,4 @@
 export interface Uploader {
-    _id:      string;
+    _id: string;
     username: string;
 }

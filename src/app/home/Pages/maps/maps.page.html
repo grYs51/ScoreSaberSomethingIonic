@@ -1,19 +1,16 @@
 <ion-content>
-  <!-- SEARCHBAR -->
-  <ion-searchbar
-    (ionChange)="onSearchInput($event)"
-    debounce="400"
-  ></ion-searchbar>
+  <!-- SEARCH_BAR -->
+  <ion-searchbar (ionChange)="onSearchInput($event)" debounce="400"></ion-searchbar>
 
   <!-- FILTER -->
   <div *ngIf="searchTerm == ''">
-    <ion-row class="ion-no-padding" >
+    <ion-row class="ion-no-padding">
       <ion-col fixed class="border-bottom-soft">
-        <ion-slides
-          [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
-          <ion-slide *ngFor="let filterobj of Filters" class="ion-no-padding"  style="width: auto; height: 40px">
+        <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+          <ion-slide *ngFor="let filterObj of Filters" class="ion-no-padding" style="width: auto; height: 40px">
             <ion-col>
-              <ion-button  [color]="filterobj == filter ? 'dark' : 'light' "  (click)=" filterButton(filterobj)" shape="round"> {{ filterobj }} </ion-button>
+              <ion-button [color]="filterObj == filter ? 'dark' : 'light' " (click)=" filterButton(filterObj)"
+                shape="round"> {{ filterObj }} </ion-button>
             </ion-col>
           </ion-slide>
         </ion-slides>
@@ -31,20 +28,13 @@
     <ion-spinner></ion-spinner>
   </div>
 
-  <ion-virtual-scroll
-    approxItemHeight="130"
-    [itemHeight]="itemHeightFn"
-    [items]="maps.docs| virtualListIndex: exteraCol : nextPipe"
-    *ngIf="maps"
-  >
+  <ion-virtual-scroll approxItemHeight="130" [itemHeight]="itemHeightFn"
+    [items]="maps.docs| virtualListIndex: externalCol : nextPipe" *ngIf="maps">
     <div *virtualItem="let item;let i = index">
       <ion-row class="ion-nowrap">
-        <ion-col  *ngFor="let j of item;">
-          <ion-card >
-            <app-beat-map-item
-              [map]="maps.docs[j]"
-              *ngIf="maps.docs[j] != undefined"
-            ></app-beat-map-item>
+        <ion-col *ngFor="let j of item;">
+          <ion-card>
+            <app-beat-map-item [map]="maps.docs[j]" *ngIf="maps.docs[j] != undefined"></app-beat-map-item>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -52,10 +42,7 @@
   </ion-virtual-scroll>
 
   <ion-infinite-scroll threshold="120px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data..."
-    >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

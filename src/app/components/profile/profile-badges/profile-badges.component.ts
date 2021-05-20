@@ -8,23 +8,29 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileBadgesComponent implements OnInit {
 
-  @Input() Scores : ISongScore[]
+  @Input() Scores: ISongScore[];
 
-  rankedmaps: ISongScore[]
+  rankedMaps: ISongScore[];
   averageScore: any;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.getRankedMaps()
-    this.getAverage()
+    this.getRankedMaps();
+    this.getAverage();
   }
   getAverage() {
-    this.averageScore =  this.rankedmaps.reduce( ( p , c  ) => p + c.score  , 0 ) / this.rankedmaps.reduce( ( p , c  ) => p + c.maxScore  , 0 )
-    console.log(this.averageScore)
+    this.averageScore = this.rankedMaps.reduce(
+      (p, c) =>
+        p + c.score, 0)
+      / this.rankedMaps.reduce(
+        (p, c) =>
+          p + c.maxScore, 0);
+    console.log(this.averageScore);
   }
+
   getRankedMaps() {
-    this.rankedmaps = this.Scores.filter(x => x.weight > 0);
+    this.rankedMaps = this.Scores.filter(x => x.weight > 0);
   }
 
 }

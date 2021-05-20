@@ -14,10 +14,10 @@ import { Injectable } from '@angular/core';
     this.GetUserScoresFromStorage();
   }
 
-  //Home_User
+  // Home_User
   public GetUserFromStorage() {
-    console.log(this.userDataSrv)
-    this.userDataSrv.User = JSON.parse(localStorage.getItem('root_user'))
+    console.log(this.userDataSrv);
+    this.userDataSrv.User = JSON.parse(localStorage.getItem('root_user'));
   }
 
   public StoreUser(user: IFullProfile) {
@@ -30,7 +30,7 @@ import { Injectable } from '@angular/core';
     this.userDataSrv.User = null;
   }
 
-  //Home_User_Scores
+  // Home_User_Scores
   public GetUserScoresFromStorage() {
     this.userDataSrv.Scores = JSON.parse(localStorage.getItem('root_user_scores'));
   }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-profile-sub-header',
   templateUrl: './profile-sub-header.component.html',
@@ -14,5 +13,4 @@ export class ProfileSubHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

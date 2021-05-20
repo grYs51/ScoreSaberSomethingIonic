@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ScoreSaberRegexService {
-  constructor() {}
+  constructor() { }
 
   private readonly Regex =
     '(?:http(?:s)?://)?(?:new\\.)?(?:scoresaber\\.com/u/)?(?<scoreSaberId>\\d{16,})(?:/.*)?';

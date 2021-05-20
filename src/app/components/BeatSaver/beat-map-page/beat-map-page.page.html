@@ -142,10 +142,10 @@
             interface="popover"
           >
             <template
-              *ngFor="let diffspecific of map.metadata.characteristics[selectedCharacteristic].difficulties | keyvalue; let i = index"
+              *ngFor="let diffSpecific of map.metadata.characteristics[selectedCharacteristic].difficulties | keyvalue; let i = index"
             >
-              <ion-select-option *ngIf="diffspecific.value"
-                ><b>{{diffspecific.key | titlecase}}</b></ion-select-option
+              <ion-select-option *ngIf="diffSpecific.value"
+                ><b>{{ diffSpecific.key | titlecase }}</b></ion-select-option
               >
             </template>
           </ion-select>

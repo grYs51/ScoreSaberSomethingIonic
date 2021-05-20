@@ -7,8 +7,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { ComponentsModule } from 'src/app/components/components.module';
 
-
-
 const routes: Routes = [
   {
     path: '',
@@ -27,4 +25,4 @@ const routes: Routes = [
   ],
   declarations: [MapsPage]
 })
-export class MapsPageModule {}
+export class MapsPageModule { }

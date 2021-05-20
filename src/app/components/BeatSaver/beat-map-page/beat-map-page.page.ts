@@ -17,7 +17,7 @@ export class BeatMapPagePage implements OnInit {
   select;
   selected;
   selectedCharacteristic = 0;
-  buttonExtraClicked : boolean = false;
+  buttonExtraClicked = false;
 
   constructor(
     private nativePageTransitions: NativePageTransitions,
@@ -26,13 +26,14 @@ export class BeatMapPagePage implements OnInit {
   Info = null;
   ngOnInit(): void {
     for (let i = 0; i < this.map.metadata.characteristics.length; i++) {
-      if (this.map.metadata.characteristics[i].name == CharacteristicEnum[0])
+      if (this.map.metadata.characteristics[i].name === CharacteristicEnum[0]) {
         this.selectedCharacteristic = i;
+      }
     }
   }
 
   dismiss() {
-    let options: NativeTransitionOptions = {
+    const options: NativeTransitionOptions = {
       direction: 'right',
       duration: 400,
       slowdownfactor: -1,
@@ -43,21 +44,21 @@ export class BeatMapPagePage implements OnInit {
     this.viewCtrl.dismiss();
   }
 
-  filterButton(charistic: number) {
-    if (this.selectedCharacteristic != charistic) {
-      this.selectedCharacteristic = charistic;
+  filterButton(characteristic: number) {
+    if (this.selectedCharacteristic !== characteristic) {
+      this.selectedCharacteristic = characteristic;
       this.select = null;
       this.selected = null;
     }
   }
   onChangeObj(value) {
     this.selected = value.charAt(0).toLowerCase() + value.slice(1);
-    if (value == 'Expertplus') {
+    if (value === 'Expertplus') {
       this.selected = 'expertPlus';
     }
   }
   openUrl(){
-    window.open(`https://skystudioapps.com/bs-viewer/?id=${this.map.key}`)
+    window.open(`https://skystudioapps.com/bs-viewer/?id=${this.map.key}`);
   }
 }
 

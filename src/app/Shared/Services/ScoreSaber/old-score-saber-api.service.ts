@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 
-//TODO: temporarily 
+// TODO: temporarily
 
 export class OldScoreSaberApiService {
   constructor(private _http: HttpClient) {}
@@ -17,8 +17,8 @@ export class OldScoreSaberApiService {
       'http://scoresaber.com/api.php?function=get-leaderboards&cat=3&page=1&limit=1',
       {
         headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
       }
     );

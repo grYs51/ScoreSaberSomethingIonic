@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISearchPlayerInfo } from 'src/app/Interfaces/ScoreSaber/Search/SearchPlayerInfo';
-
 @Component({
   selector: 'app-profile-header',
   templateUrl: './profile-header.component.html',
@@ -10,7 +8,6 @@ export class ProfileHeaderComponent implements OnInit {
   @Input() name: string;
   @Input() avatar: string;
   @Input() country: string;
-
 
   constructor() { }
 

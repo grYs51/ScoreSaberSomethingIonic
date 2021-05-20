@@ -2,57 +2,38 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-row
-          *ngIf="userdata.User"
-          class="ion-align-items-center ion-justify-content-center"
-        >
+        <ion-row *ngIf="userData.User" class="ion-align-items-center ion-justify-content-center">
           <ion-col size="3">
             <ion-thumbnail>
-              <img
-                src="https://new.scoresaber.com{{
-                  userdata.User.playerInfo.avatar
-                }}"
-                alt=""
-              />
+              <img src="https://new.scoresaber.com{{
+                  userData.User.playerInfo.avatar
+                }}" alt="" />
             </ion-thumbnail>
           </ion-col>
           <ion-col size="6">
             <span>
               <strong style="font-size: large">
                 {{
-                  userdata.User ? userdata.User.playerInfo.playerName : "User"
+                userData.User ? userData.User.playerInfo.playerName : "User"
                 }}
               </strong>
             </span>
             <br />
             <span style="font-size: smaller">
               {{
-                userdata.User
-                  ? "rank: #" + userdata.User.playerInfo.rank
-                  : "UserInfo"
-              }}</span
-            >
+              userData.User
+              ? "rank: #" + userData.User.playerInfo.rank
+              : "UserInfo"
+              }}</span>
           </ion-col>
         </ion-row>
         <ion-list id="inbox-list">
           <ion-list id="labels-list">
             <ion-list-header>ScoreSaberSomething</ion-list-header>
-            <ion-menu-toggle
-              auto-hide="false"
-              *ngFor="let p of appPages; let i = index"
-            >
-              <ion-item
-                routerDirection="root"
-                [routerLink]="[p.url]"
-                lines="none"
-                detail="false"
-                routerLinkActive="selected"
-              >
-                <ion-icon
-                  slot="start"
-                  [ios]="p.icon + '-outline'"
-                  [md]="p.icon + '-sharp'"
-                ></ion-icon>
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+                routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
             </ion-menu-toggle>
@@ -60,22 +41,10 @@
         </ion-list>
         <ion-list id="labels-list">
           <ion-list-header>Other</ion-list-header>
-          <ion-menu-toggle
-            auto-hide="false"
-            *ngFor="let p of otherAppPages; let i = index"
-          >
-            <ion-item
-              routerDirection="root"
-              [routerLink]="[p.url]"
-              lines="none"
-              detail="false"
-              routerLinkActive="selected"
-            >
-              <ion-icon
-                slot="start"
-                [ios]="p.icon + '-outline'"
-                [md]="p.icon + '-sharp'"
-              ></ion-icon>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of otherAppPages; let i = index">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>

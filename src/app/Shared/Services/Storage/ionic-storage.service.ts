@@ -10,16 +10,16 @@ import { Storage } from '@ionic/storage';
   providedIn: 'root',
 })
 export class IonicStorageService extends BaseStorageService {
-  //Home_User
+  // Home_User
   public async GetUserFromStorage() {
     return await this.storage.get('root_user').then((value) => {
-      let obj: IStoredUser = JSON.parse(value);
+      const obj: IStoredUser = JSON.parse(value);
       return obj;
     });
   }
 
   public StoreUser(user: IFullProfile): IStoredUser {
-    let obj: IStoredUser = {
+    const obj: IStoredUser = {
       id: user.playerInfo.playerId,
       name: user.playerInfo.playerName,
       avatar: user.playerInfo.avatar,
@@ -35,7 +35,7 @@ export class IonicStorageService extends BaseStorageService {
     this.userDataSrv.User = null;
   }
 
-  //HomeUserScores
+  // HomeUserScores
   public async GetUserScoresFromStorage() {
     return await this.storage.get('root_user_scores').then((value) => {
       this.userDataSrv.Scores = JSON.parse(value);

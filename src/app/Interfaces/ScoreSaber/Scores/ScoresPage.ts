@@ -1,5 +1,5 @@
-import { ISongScore } from "./SongScore";
+import { ISongScore } from './SongScore';
 
-export interface IScoresPage{
-    scores : ISongScore[];
+export interface IScoresPage {
+    scores: ISongScore[];
 }

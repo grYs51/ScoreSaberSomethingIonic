@@ -1,9 +1,9 @@
 export interface Difficulties {
-    duration:  number;
-    length:    number;
-    njs:       number;
+    duration: number;
+    length: number;
+    njs: number;
     njsOffset: number;
-    bombs:     number;
-    notes:     number;
+    bombs: number;
+    notes: number;
     obstacles: number;
 }

@@ -8,9 +8,10 @@ import { IPlayersPage } from 'src/app/Interfaces/ScoreSaber/Search/PlayersPage';
   styleUrls: ['./leaderboard.page.css'],
 })
 export class LeaderboardPage implements OnInit {
-  page: number = 1;
-  users: IPlayersPage = null;
 
+  page = 1;
+  users: IPlayersPage = null;
+  dummies = Array.from(Array(100).keys());
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
 
@@ -18,12 +19,11 @@ export class LeaderboardPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.users = await this.scoreSaberSrv.FetchGlobalPlayers(this.page);
-    console.log(this.users);
   }
 
   async loadData(event) {
     this.page++;
-    let resp: IPlayersPage = await this.scoreSaberSrv.FetchGlobalPlayers(
+    const resp: IPlayersPage = await this.scoreSaberSrv.FetchGlobalPlayers(
       this.page
     );
 

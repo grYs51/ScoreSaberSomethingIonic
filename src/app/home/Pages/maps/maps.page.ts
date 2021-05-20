@@ -12,15 +12,15 @@ export class MapsPage implements OnInit {
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
 
   vColMinWidth = 600; // virtual list columns min width as pixel
-  exteraCol = 0; // how many columns should be add to virtual list
+  externalCol = 0; // how many columns should be add to virtual list
   nextPipe = 0;
   screenWidth: number;
 
-  searching: boolean = false;
-  searchTerm: string = '';
+  searching = false;
+  searchTerm = '';
 
   filter: Filter = Filter.Hot;
-  page: number = 0;
+  page = 0;
   maps: IBeatSavermaplist = null;
 
   Filters = [
@@ -43,9 +43,9 @@ export class MapsPage implements OnInit {
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.screenWidth = window.innerWidth;
-    this.exteraCol = Math.trunc(this.screenWidth / this.vColMinWidth) - 1;
-    this.exteraCol = this.exteraCol < 0 ? 0 : this.exteraCol;
-    this.exteraCol = this.exteraCol > 3 ? 3 : this.exteraCol; // if we want to have max virtual column count
+    this.externalCol = Math.trunc(this.screenWidth / this.vColMinWidth) - 1;
+    this.externalCol = this.externalCol < 0 ? 0 : this.externalCol;
+    this.externalCol = this.externalCol > 3 ? 3 : this.externalCol; // if we want to have max virtual column count
   }
 
   async ngOnInit(): Promise<void> {
@@ -59,7 +59,7 @@ export class MapsPage implements OnInit {
     this.maps = null;
     this.page = 0;
 
-    if (this.searchTerm == '') {
+    if (this.searchTerm === '') {
       this.filter = Filter.Hot;
     } else {
       this.filter = Filter.Search;
@@ -73,7 +73,7 @@ export class MapsPage implements OnInit {
   async loadData(event) {
     this.page++;
 
-    let obj: IBeatSavermaplist = await this.FetchData(
+    const obj: IBeatSavermaplist = await this.FetchData(
       this.filter,
       this.searchTerm,
       this.page
@@ -109,7 +109,7 @@ export class MapsPage implements OnInit {
   }
 
   async filterButton(filterObj: Filter) {
-    if (filterObj != this.filter) {
+    if (filterObj !== this.filter) {
       this.filter = filterObj;
       this.maps = null;
       this.page = 0;

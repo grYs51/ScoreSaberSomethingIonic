@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class VirtualListIndexPipe implements PipeTransform {
   transform(
     array: Array<any>,
-    exteraCol: number,
+    externalCol: number,
     nextPipe: number
   ): number[][] {
     const range = (s: number, e: number) =>
@@ -14,10 +14,10 @@ export class VirtualListIndexPipe implements PipeTransform {
     const virtualList = [] as number[][];
 
     let i = 0;
-    for (i; i < array.length - exteraCol; i += exteraCol + 1) {
-      virtualList.push([...range(i, i + exteraCol)]);
+    for (i; i < array.length - externalCol; i += externalCol + 1) {
+      virtualList.push([...range(i, i + externalCol)]);
     }
-    // last 2d array maybe not full lenght
+    // last 2d array maybe not full length
     virtualList.push([...range(i, array.length - 1)]);
 
     return virtualList;

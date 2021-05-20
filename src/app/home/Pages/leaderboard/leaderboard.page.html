@@ -1,14 +1,18 @@
-<ion-content >
-  <ion-virtual-scroll [items]="users.players" *ngIf="users" >
-    <ion-item *virtualItem="let user" >
-      <app-player-item [player]=user style="width: 100%;" ></app-player-item>
+<ion-content>
+  <ion-virtual-scroll [items]="users.players" *ngIf="users">
+    <ion-item *virtualItem="let user">
+      <app-player-item [player]=user style="width: 100%;"></app-player-item>
+    </ion-item>
+  </ion-virtual-scroll>
+
+  <ion-virtual-scroll [items]="dummies" *ngIf="!users && dummies">
+    <ion-item *virtualItem="let dummy">
+      <app-player-ghost-item></app-player-ghost-item>
     </ion-item>
   </ion-virtual-scroll>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

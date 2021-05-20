@@ -7,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PlayerGhostItemComponent implements OnInit {
 
-  @Input() index : number;
-  
+  @Input() index: number;
+
   constructor() { }
 
   ngOnInit(): void {

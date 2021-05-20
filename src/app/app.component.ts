@@ -19,8 +19,8 @@ export class AppComponent {
   public otherAppPages = [
     { title: 'Settings', url: 'settings', icon: 'settings' },
   ];
-  
-  constructor(cache: CacheService, public userdata: UserDataService) {
+
+  constructor(cache: CacheService, public userData: UserDataService) {
     cache.setDefaultTTL(60 * 2);
     cache.setOfflineInvalidate(false);
   }

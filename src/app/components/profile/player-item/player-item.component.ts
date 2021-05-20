@@ -24,7 +24,7 @@ export class PlayerItemComponent implements OnInit {
 
   async viewPlayer() {
 
-    let options: NativeTransitionOptions = {
+    const options: NativeTransitionOptions = {
       direction: 'left',
       duration: 400,
       slowdownfactor: -1,

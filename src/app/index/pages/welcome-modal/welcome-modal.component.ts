@@ -32,10 +32,10 @@ export class WelcomeModalComponent implements OnInit {
     speed: 400,
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   dismiss() {
-    this.viewCtrl.dismiss(this.user );
+    this.viewCtrl.dismiss(this.user);
   }
 
   slideChanged() {

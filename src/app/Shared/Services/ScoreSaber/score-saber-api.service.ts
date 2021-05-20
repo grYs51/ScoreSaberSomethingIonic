@@ -6,7 +6,7 @@ export class ScoreSaberService {
   private SCORESABER_BASEURL = 'https://new.scoresaber.com';
   private SCORESABER_API_BASEURL = this.SCORESABER_BASEURL + '/api/';
 
-  constructor(private rateLimitSrv: RateLimitService) {}
+  constructor(private rateLimitSrv: RateLimitService) { }
 
   FetchBasicProfile<IBasicProfile>(
     scoreSaberId: string

@@ -43,7 +43,7 @@ export class ViewPlayerProfileComponent implements OnInit {
   }
 
   dismiss() {
-    let options: NativeTransitionOptions = {
+    const options: NativeTransitionOptions = {
       direction: 'right',
       duration: 400,
       slowdownfactor: -1,

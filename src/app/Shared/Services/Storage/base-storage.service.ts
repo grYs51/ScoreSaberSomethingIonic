@@ -11,13 +11,13 @@ export abstract class BaseStorageService {
   constructor() {
 
   }
-  public abstract GetUserFromStorage(): Promise<IStoredUser>
+  public abstract GetUserFromStorage(): Promise<IStoredUser>;
 
   public abstract StoreUser(user: IFullProfile);
 
   public abstract RemoveUser();
 
-  //Home_User_Scores
+  // Home_User_Scores
   public abstract GetUserScoresFromStorage();
 
   public abstract StoreUserScores(scores: ISongScore[]);

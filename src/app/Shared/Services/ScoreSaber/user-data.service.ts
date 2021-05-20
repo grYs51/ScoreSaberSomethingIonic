@@ -9,10 +9,10 @@ export class UserDataService {
   User: IFullProfile = null;
   Scores: ISongScore[] = null;
 
-  constructor() {}
+  constructor() { }
 }
 
-export interface IHomeUser{
-id: string;
-name: string
+export interface IHomeUser {
+  id: string;
+  name: string;
 }

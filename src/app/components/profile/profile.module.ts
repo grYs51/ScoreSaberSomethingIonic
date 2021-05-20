@@ -8,9 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from 'src/app/pipes/pipes.module';
 import { PlayerGhostItemComponent } from './player-ghost-item/player-ghost-item.component';
-
-
-
 @NgModule({
   declarations: [PlayerItemComponent, ProfileBadgesComponent, ProfileHeaderComponent, ProfileSubHeaderComponent, PlayerGhostItemComponent],
   imports: [

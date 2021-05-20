@@ -16,7 +16,7 @@ import * as moment from 'moment';
 export class BeatMapItemComponent implements OnInit {
   @Input() map: IBeatSaverMap;
 
-  datenow: string;
+  dateNow: string;
 
   constructor(
     private nativePageTransitions: NativePageTransitions,
@@ -31,10 +31,10 @@ export class BeatMapItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datenow = moment(this.map.uploaded).fromNow();
+    this.dateNow = moment(this.map.uploaded).fromNow();
   }
   async showMap() {
-    let options: NativeTransitionOptions = {
+    const options: NativeTransitionOptions = {
       direction: 'left',
       duration: 400,
       slowdownfactor: -1,
@@ -47,15 +47,15 @@ export class BeatMapItemComponent implements OnInit {
       component: BeatMapPagePage,
       componentProps: {
         map: this.map,
-        date: this.datenow
+        date: this.dateNow
       },
     });
     await modal.present();
   }
 
   setRatingColor(): string {
-    let rating = Math.round(this.map.stats.rating * 100);
-    if (rating != 0) {
+    const rating = Math.round(this.map.stats.rating * 100);
+    if (rating !== 0) {
       if (rating <= 50) {
         return Diffs[3];
       } else if (rating <= 65) {
@@ -64,7 +64,7 @@ export class BeatMapItemComponent implements OnInit {
         return Diffs[0];
       }
     } else {
-      return 'noDiff ratingcolor';
+      return 'noDiff ratingColor';
     }
   }
 }

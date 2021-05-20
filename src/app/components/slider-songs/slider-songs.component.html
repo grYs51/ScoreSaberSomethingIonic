@@ -15,24 +15,16 @@
   </ion-row>
 
   <ion-row class="ion-no-padding">
-    <ion-slides
-      [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
-    >
-      <ion-slide *ngFor="let song of songs.scores"
-        class="ion-no-padding"
-        style="width: 150px; height: 200px">
+    <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+      <ion-slide *ngFor="let song of songs.scores" class="ion-no-padding" style="width: 150px; height: 200px">
         <ion-col>
-          <ion-img
-            style="pointer-events: none"
-            src="https://scoresaber.com/imports/images/songs/{{
+          <ion-img style="pointer-events: none" src="https://scoresaber.com/imports/images/songs/{{
               song.songHash
-            }}.png"
-          ></ion-img>
+            }}.png"></ion-img>
         </ion-col>
       </ion-slide>
-      <ion-slide class="ion-no-padding"
-        style="width: 150px; height: 200px">
-          Show More
+      <ion-slide class="ion-no-padding" style="width: 150px; height: 200px">
+        Show More
       </ion-slide>
     </ion-slides>
   </ion-row>

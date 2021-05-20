@@ -1,5 +1,5 @@
-import { IProfilePlayerInfo } from "./ProfilePlayerInfo";
+import { IProfilePlayerInfo } from './ProfilePlayerInfo';
 
 export interface IBasicProfile {
-   playerInfo : IProfilePlayerInfo | null;
+   playerInfo: IProfilePlayerInfo | null;
 }

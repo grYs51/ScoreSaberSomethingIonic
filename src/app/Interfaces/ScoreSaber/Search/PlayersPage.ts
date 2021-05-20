@@ -1,5 +1,5 @@
-import { ISearchPlayerInfo } from "./SearchPlayerInfo";
+import { ISearchPlayerInfo } from './SearchPlayerInfo';
 
-export interface IPlayersPage{
-    players : ISearchPlayerInfo[] | null;
+export interface IPlayersPage {
+    players: ISearchPlayerInfo[] | null;
 }

@@ -37,7 +37,6 @@ export class BeatsaverApiService {
     return this.rateLimitSrv.fetchData<IBeatSavermaplist>(`${this.BEATSAVER_API_BASEURL}search/text/${page}?q=${encodeURIComponent(text)}&?automapper=${autoMapper}`);
   }
 
-
   FetchMapByKey<IBeatSaverMap>(key: string): Promise<IBeatSaverMap> {
     return this.rateLimitSrv.fetchData<IBeatSaverMap>(`${this.BEATSAVER_API_BASEURL}maps/detail/${key}`);
   }

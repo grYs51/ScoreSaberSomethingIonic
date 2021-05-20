@@ -19,12 +19,12 @@
         <app-profile-sub-header [pp]=user.pp [rank]=user.rank [avgAcc]=fetchedUser.scoreStats.averageRankedAccuracy ></app-profile-sub-header>
     </div>
 
-    <!-- TOPSCORES -->
+    <!-- TOP_SCORES -->
     <div *ngIf="topScore" >
         <app-slider-songs [songs]=topScore [name]="'Top Score'"></app-slider-songs>
     </div>
 
-    <!-- RECENTSCORES -->
+    <!-- RECENT_SCORES -->
     <div *ngIf="recentScore" >
         <app-slider-songs [songs]=recentScore [name]="'Recent Score'"></app-slider-songs>
     </div>
