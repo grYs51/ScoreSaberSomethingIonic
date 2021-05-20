@@ -11,13 +11,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./welcome-modal.component.css'],
 })
 export class WelcomeModalComponent implements OnInit {
-  @ViewChild(IonSlides) slides: IonSlides;
-
-  Input: string = '';
-  user: IFullProfile = null;
-  isTyping: boolean = false;
-
-  subscription: Subscription;
 
   constructor(
     public viewCtrl: ModalController,
@@ -27,18 +20,26 @@ export class WelcomeModalComponent implements OnInit {
     private toastController: ToastController
   ) { }
 
-  ngOnInit(): void {}
+  @ViewChild(IonSlides) slides: IonSlides;
+
+  Input = '';
+  user: IFullProfile = null;
+  isTyping = false;
+
+  subscription: Subscription;
   slideOpts = {
     initialSlide: 0,
     speed: 400,
   };
+
+  ngOnInit(): void {}
 
   dismiss() {
     this.viewCtrl.dismiss(this.user );
   }
 
   slideChanged() {
-    let currentIndex = this.slides.getActiveIndex();
+    const currentIndex = this.slides.getActiveIndex();
     currentIndex.then(async (res) => {
       if (res > 1 && !this.user) {
         console.log('f');
@@ -46,7 +47,7 @@ export class WelcomeModalComponent implements OnInit {
           color: 'danger',
           header: 'Wait!',
           message:
-            "Are you sure you don't want to add a ScoreSaber profile?\nYou will miss out some awesome features.",
+            'Are you sure you don\'t want to add a ScoreSaber profile?\nYou will miss out some awesome features.',
           duration: 7500,
           buttons: [
             {
@@ -65,7 +66,7 @@ export class WelcomeModalComponent implements OnInit {
 
   async checkRegex(input) {
     this.Input = input;
-    let id = this.SSRegex.checkid(input);
+    const id = this.SSRegex.checkId(input);
 
     if (id) {
       try {

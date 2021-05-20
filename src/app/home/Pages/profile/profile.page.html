@@ -1,38 +1,28 @@
 <ion-content>
-  <ion-refresher
-    (ionRefresh)="doRefresh($event)"
-    slot="fixed"
-    pullFactor="0.5"
-    pullMin="100"
-    pullMax="200"
-  >
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <!-- STOREDUSER -->
-  <div class="vertical-padding ion-text-center" *ngIf="storedUser != null">
-    <app-profile-header
-      [name]="storedUser.name"
-      [avatar]="storedUser.avatar"
-      [country]="storedUser.country"
-    ></app-profile-header>
+  <!-- STORED_USER -->
+  <div class="ion-text-center" *ngIf="storedUser != null">
+    <app-profile-header [name]="storedUser.name" [avatar]="storedUser.avatar" [country]="storedUser.country">
+    </app-profile-header>
   </div>
 
-  <!-- LIST -->
-  <div
-    *ngIf="userDataSrv.User"
-    class="ion-text-center animate__animated animate__slideInUp animate__fast"
-  >
-    <app-profile-sub-header
-      [pp]="userDataSrv.User.playerInfo.pp"
-      [rank]="userDataSrv.User.playerInfo.rank"
-      [avgAcc]="userDataSrv.User.scoreStats.averageRankedAccuracy"
-    ></app-profile-sub-header>
+  <app-profile-badges *ngIf="userDataSrv.Scores" [Scores]="userDataSrv.Scores" >
 
-    <ion-grid
-      class="border-bottom ion-text-center animate__animated animate__slideInUp animate__fast"
-      style="animation-delay: 300ms"
-    >
+  </app-profile-badges>
+
+  <div *ngIf="userDataSrv.User" class="ion-text-center animate__animated animate__slideInUp animate__fast">
+
+    <app-profile-sub-header [pp]="userDataSrv.User.playerInfo.pp" [rank]="userDataSrv.User.playerInfo.rank"
+      [avgAcc]="userDataSrv.User.scoreStats.averageRankedAccuracy">
+    </app-profile-sub-header>
+
+
+    <!-- LIST -->
+    <ion-grid class="border-bottom ion-text-center animate__animated animate__slideInUp animate__fast"
+      style="animation-delay: 300ms">
       <ion-list class="">
         <ion-item>
           <ion-label>
@@ -52,8 +42,7 @@
         </ion-item>
         <div *ngIf="userDataSrv.Scores">
           <ion-item>
-            <ion-label
-              >All Songs:
+            <ion-label>All Songs:
               <span class="ion-float-right ion-padding-end fa">
                 <strong> {{userDataSrv.Scores.length}} </strong>
               </span>
@@ -63,19 +52,15 @@
         <div *ngIf="!userDataSrv.Scores">
           <ion-item>
             <ion-label>
-              <div *ngIf="!profilesrv.isLoading" class="ion-text-center">
+              <div *ngIf="!profileSrv.isLoading" class="ion-text-center">
                 <ion-button (click)="getAllScores()">
                   get the full profile
                 </ion-button>
               </div>
-              <div *ngIf="profilesrv.isLoading" class="ion-text-center">
-                <span
-                  >Getting Pages
-                  <br />{{profilesrv.loadedPages}}/{{profilesrv.totalPages}}</span
-                >
-                <ion-progress-bar
-                  value="{{profilesrv.loadedPages / profilesrv.totalPages}}"
-                ></ion-progress-bar>
+              <div *ngIf="profileSrv.isLoading" class="ion-text-center">
+                <span>Getting Pages
+                  <br />{{profileSrv.loadedPages}}/{{profileSrv.totalPages}}</span>
+                <ion-progress-bar value="{{profileSrv.loadedPages / profileSrv.totalPages}}"></ion-progress-bar>
               </div>
             </ion-label>
           </ion-item>
@@ -84,28 +69,16 @@
     </ion-grid>
   </div>
 
-  <!-- TOPSONGS -->
-  <div
-    *ngIf="profilesrv.TopScore"
-    class="ion-text-center animate__animated animate__slideInUp animate__fast"
-    style="animation-delay: 500ms"
-  >
-    <app-slider-songs
-      [songs]="profilesrv.TopScore"
-      [name]="'Top Score'"
-    ></app-slider-songs>
+  <!-- TOP_SONGS -->
+  <div *ngIf="profileSrv.TopScore" class="ion-text-center animate__animated animate__slideInUp animate__fast"
+    style="animation-delay: 500ms">
+    <app-slider-songs [songs]="profileSrv.TopScore" [name]="'Top Score'"></app-slider-songs>
   </div>
 
-  <!-- RECENTSONGS -->
-  <div
-    *ngIf="profilesrv.RecentScore"
-    class="ion-text-center animate__animated animate__slideInUp animate__fast"
-    style="animation-delay: 700ms"
-  >
-    <app-slider-songs
-      [songs]="profilesrv.RecentScore"
-      [name]="'Recent Score'"
-    ></app-slider-songs>
+  <!-- RECENT_SONGS -->
+  <div *ngIf="profileSrv.RecentScore" class="ion-text-center animate__animated animate__slideInUp animate__fast"
+    style="animation-delay: 700ms">
+    <app-slider-songs [songs]="profileSrv.RecentScore" [name]="'Recent Score'"></app-slider-songs>
   </div>
 
   <!-- CARD -->
@@ -117,8 +90,8 @@
             <img src="https://image.flaticon.com/icons/svg/163/163801.svg" />
           </ion-avatar>
           <ion-label>
-            <h2>Juanito Perez</h2>
-            <p>Hace 29 min.</p>
+            <h2>Juanita Perez</h2>
+            <p>Hacek 29 min.</p>
           </ion-label>
         </ion-item>
       </ion-list>

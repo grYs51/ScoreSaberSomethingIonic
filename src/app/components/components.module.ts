@@ -9,8 +9,6 @@ import { BeatMapPagePage } from './BeatSaver/beat-map-page/beat-map-page.page';
 import { PipesModule } from '../pipes/pipes.module';
 import { FormsModule } from '@angular/forms';
 import { ProfileModule } from './profile/profile.module';
-
-
 @NgModule({
   declarations: [SliderSongsComponent,BeatMapPagePage, BeatMapItemComponent, ViewPlayerProfileComponent],
   imports: [

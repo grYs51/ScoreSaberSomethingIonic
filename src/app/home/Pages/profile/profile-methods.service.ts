@@ -1,4 +1,3 @@
-import { ISongScore } from './../../../Interfaces/ScoreSaber/Scores/SongScore';
 import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
 import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
 import { Injectable } from '@angular/core';
@@ -9,11 +8,10 @@ import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
   providedIn: 'root',
 })
 export class ProfileMethodsService {
+  isLoading = false;
 
-  isLoading: boolean = false;
-
-  totalPages: number = 1;
-  loadedPages: number = 0;
+  totalPages = 1;
+  loadedPages = 0;
 
   TopScore: IScoresPage = null;
   RecentScore: IScoresPage = null;
@@ -22,16 +20,14 @@ export class ProfileMethodsService {
     private scoreSaberSrv: ScoreSaberService,
     private store: IonicStorageService,
     private userDataSrv: UserDataService
-  ) {}
+  ) { }
 
   async GetAllScores(id: string) {
-    let obj: any[] = [];
+    const obj: any[] = [];
     this.isLoading = true;
     for (let i = 1; i <= this.totalPages; i++) {
-      let resp: IScoresPage = await this.scoreSaberSrv.FetchRecentSongsScorePage(
-        id,
-        i
-      );
+      const resp: IScoresPage =
+        await this.scoreSaberSrv.FetchRecentSongsScorePage(id, i);
       resp.scores.forEach((song) => {
         obj.push(song);
       });
@@ -41,16 +37,27 @@ export class ProfileMethodsService {
     this.isLoading = false;
   }
 
-  async GetProfile(userid: string) {
+  async GetProfile(userId: string) {
     this.userDataSrv.User = await this.scoreSaberSrv.FetchFullPlayerProfile(
-      userid
+      userId
     );
-    this.totalPages = Math.ceil(this.userDataSrv.User.scoreStats.totalPlayCount / 8);
+    this.getTotalPages();
   }
-  async GetFirstPageTopScore(userid: string){
-    this.TopScore = await this.scoreSaberSrv.FetchTopSongsScorePage(userid, 1)
+
+  getTotalPages() {
+    this.totalPages = Math.ceil(
+      this.userDataSrv.User.scoreStats.totalPlayCount / 8
+    );
   }
-  async GetFirstPageRecentScore(userid: string){
-    this.RecentScore = await this.scoreSaberSrv.FetchRecentSongsScorePage(userid, 1)
+
+  async GetFirstPageTopScore(userId: string) {
+    this.TopScore = await this.scoreSaberSrv.FetchTopSongsScorePage(userId, 1);
+  }
+
+  async GetFirstPageRecentScore(userId: string) {
+    this.RecentScore = await this.scoreSaberSrv.FetchRecentSongsScorePage(
+      userId,
+      1
+    );
   }
 }

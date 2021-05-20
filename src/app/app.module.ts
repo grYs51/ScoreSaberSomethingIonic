@@ -20,7 +20,6 @@ import { ComponentsModule } from './components/components.module';
     IonicStorageModule.forRoot(),
     CacheModule.forRoot({ keyPrefix: 'scoresaber-cache' }),
     ComponentsModule,
-    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },IonicStorageModule,],
   bootstrap: [AppComponent],

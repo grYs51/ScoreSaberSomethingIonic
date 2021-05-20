@@ -1,5 +1,3 @@
-import { CacheService } from 'ionic-cache';
-import { ScoreSaberService } from '../../../Shared/Services/ScoreSaber/score-saber-api.service';
 import { IStoredUser } from './../../../Interfaces/StoringData/StoreUser';
 import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
 import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
@@ -18,18 +16,18 @@ export class ProfilePage implements OnInit {
   constructor(
     private modalController: ModalController,
     public userDataSrv: UserDataService,
-    public profilesrv: ProfileMethodsService,
+    public profileSrv: ProfileMethodsService,
     private ionicStorage: IonicStorageService,
     private toast: ToastController
-  ) {}
+  ) { }
 
-  cacheduser: Observable<IFullProfile>;
+  cachedUser: Observable<IFullProfile>;
   profileKey: 'profile-cache';
-
   storedUser: IStoredUser = null;
   user: IFullProfile = null;
-  //flags
-  hasFullProfileLoaded: boolean = false;
+
+  // flags
+  hasFullProfileLoaded = false;
 
   async ngOnInit(): Promise<void> {
     this.storedUser = await this.ionicStorage.GetUserFromStorage();
@@ -37,24 +35,21 @@ export class ProfilePage implements OnInit {
     if (!this.storedUser) {
       this.openModal();
     } else {
-      //caching
-
-      await this.profilesrv.GetProfile(this.storedUser.id);
+      // caching
+      await this.profileSrv.GetProfile(this.storedUser.id);
       await this.preset(this.storedUser.id);
-
-      let toast = await this.toast.create({
+      const toast = await this.toast.create({
         position: 'top',
         message: 'API request Done.',
         duration: 2000,
       });
-
       toast.present();
     }
   }
 
-  async preset(userid: string) {
-    await this.profilesrv.GetFirstPageTopScore(this.storedUser.id);
-    await this.profilesrv.GetFirstPageRecentScore(this.storedUser.id);
+  async preset(userId: string) {
+    await this.profileSrv.GetFirstPageTopScore(userId);
+    await this.profileSrv.GetFirstPageRecentScore(userId);
   }
 
   async openModal() {
@@ -70,12 +65,14 @@ export class ProfilePage implements OnInit {
       this.storedUser = this.ionicStorage.StoreUser(obj);
     });
   }
+
   async getAllScores() {
-    await this.profilesrv.GetAllScores(this.storedUser.id);
+    this.profileSrv.getTotalPages();
+    await this.profileSrv.GetAllScores(this.storedUser.id);
   }
 
   async doRefresh(event) {
-    await this.profilesrv.GetProfile(this.storedUser.id);
+    await this.profileSrv.GetProfile(this.storedUser.id);
     await this.preset(this.storedUser.id);
     event.target.complete();
   }
