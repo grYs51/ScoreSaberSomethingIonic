@@ -5,17 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-
-
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     HomeRoutingModule,
-    ComponentsModule
+    ComponentsModule,
   ],
   declarations: [HomeComponent]
 })
-export class HomeModule {}
+export class HomeModule { }

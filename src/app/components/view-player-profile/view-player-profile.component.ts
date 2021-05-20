@@ -1,13 +1,14 @@
 import { ScoreSaberService } from '../../Shared/Services/ScoreSaber/score-saber-api.service';
-import { IFullProfile } from './../../Interfaces/ScoreSaber/Profile/FullProfile';
-import { ModalController, Platform } from '@ionic/angular';
-import { ISearchPlayerInfo } from './../../Interfaces/ScoreSaber/Search/SearchPlayerInfo';
+import { IFullProfile } from '../../Interfaces/ScoreSaber/Profile/FullProfile';
+import { ModalController } from '@ionic/angular';
+import { ISearchPlayerInfo } from '../../Interfaces/ScoreSaber/Search/SearchPlayerInfo';
 import { Component, Input, OnInit } from '@angular/core';
 import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 import {
   NativePageTransitions,
   NativeTransitionOptions,
 } from '@ionic-native/native-page-transitions/ngx';
+
 
 @Component({
   // selector: 'app-view-player-profile',
@@ -25,7 +26,7 @@ export class ViewPlayerProfileComponent implements OnInit {
     private nativePageTransitions: NativePageTransitions,
     private viewCtrl: ModalController,
     private scoresaberSrv: ScoreSaberService
-  ) {}
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchedUser = await this.scoresaberSrv.FetchFullPlayerProfile(

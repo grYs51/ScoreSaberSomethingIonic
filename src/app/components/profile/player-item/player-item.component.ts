@@ -1,4 +1,4 @@
-import { ViewPlayerProfileComponent } from './../view-player-profile/view-player-profile.component';
+import { ViewPlayerProfileComponent } from '../../view-player-profile/view-player-profile.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { ISearchPlayerInfo } from 'src/app/Interfaces/ScoreSaber/Search/SearchPlayerInfo';
 import {
