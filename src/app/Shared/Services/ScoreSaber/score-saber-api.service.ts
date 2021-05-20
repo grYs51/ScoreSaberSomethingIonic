@@ -1,4 +1,4 @@
-import { RateLimitService } from '../Extenstions/rate-limit.service';
+import { RateLimitService } from '../Extensions/rate-limit.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })

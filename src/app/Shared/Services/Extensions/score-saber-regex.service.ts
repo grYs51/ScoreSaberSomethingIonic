@@ -9,9 +9,9 @@ export class ScoreSaberRegexService {
   private readonly Regex =
     '(?:http(?:s)?://)?(?:new\\.)?(?:scoresaber\\.com/u/)?(?<scoreSaberId>\\d{16,})(?:/.*)?';
 
-  checkid(input: string) {
+  checkId(input: string) {
     if (input.match(this.Regex) != null) {
-      return input.match(this.Regex).groups['scoreSaberId'];
+      return input.match(this.Regex).groups.scoreSaberId;
     }
     return null;
   }

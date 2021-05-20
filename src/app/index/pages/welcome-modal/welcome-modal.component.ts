@@ -1,7 +1,7 @@
 import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
 import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
 import { ScoreSaberService } from '../../../Shared/Services/ScoreSaber/score-saber-api.service';
-import { ScoreSaberRegexService } from './../../../Shared/Services/Extenstions/score-saber-regex.service';
+import { ScoreSaberRegexService } from '../../../Shared/Services/Extensions/score-saber-regex.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, ToastController, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
