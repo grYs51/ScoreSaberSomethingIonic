@@ -1,0 +1,21 @@
+<ion-item>
+    <ion-avatar slot="start">
+        <img class="ion-text-center" src="https://new.scoresaber.com{{playerInfo.avatar}}" />
+    </ion-avatar>
+    <ion-label>
+        <h3>
+            {{ playerInfo.playerName }}
+        </h3>
+        <p>
+            Rank: {{ playerInfo.rank }} -
+            {{playerInfo.country }}:
+            {{ playerInfo.countryRank }}
+        </p>
+        <p>{{ playerInfo.pp }} pp</p>
+    </ion-label>
+    <ion-avatar slot="end" style="margin-right: 20px;">
+        <ion-button (click)="button()">
+            Add
+        </ion-button>
+    </ion-avatar>
+</ion-item>

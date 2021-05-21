@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { SliderSongsComponent } from './slider-songs/slider-songs.component';
 import { ProfileModule } from './profile/profile.module';
 import { BeatSaverModule } from './BeatSaver/beat-saver.module';
+import { AddPlayerModule } from './add-player/add-player.module';
 @NgModule({
   declarations: [SliderSongsComponent, ViewPlayerProfileComponent],
   imports: [
@@ -13,8 +14,9 @@ import { BeatSaverModule } from './BeatSaver/beat-saver.module';
     IonicModule,
     ProfileModule,
     BeatSaverModule,
+    AddPlayerModule,
   ],
-  exports: [SliderSongsComponent, ViewPlayerProfileComponent, ProfileModule, BeatSaverModule],
+  exports: [SliderSongsComponent, ViewPlayerProfileComponent, ProfileModule, BeatSaverModule, AddPlayerModule ],
   providers: [NativePageTransitions]
 })
 export class ComponentsModule { }

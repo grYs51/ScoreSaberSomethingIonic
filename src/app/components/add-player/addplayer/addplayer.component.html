@@ -1,0 +1,12 @@
+<div *ngIf="user">
+    <player-add-item [playerInfo]="user.playerInfo" (buttonClicked)="AddPlayer($event)"></player-add-item>
+</div>
+
+<div *ngIf="!user">
+    <ghost-player-item [flag]="Input.length > 0"></ghost-player-item>
+</div>
+
+<ion-item>
+    <ion-input class="ion-padding text-center" [debounce]="500" (ionChange)="checkRegex(Input)"
+        placeholder="Enter ScoreSaberId" [(ngModel)]="Input"></ion-input>
+</ion-item>
