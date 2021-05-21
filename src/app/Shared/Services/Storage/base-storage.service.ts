@@ -13,7 +13,7 @@ export abstract class BaseStorageService {
   }
   public abstract GetUserFromStorage(): Promise<IStoredUser>;
 
-  public abstract StoreUser(user: IFullProfile);
+  public abstract StoreUser(user: IStoredUser);
 
   public abstract RemoveUser();
 

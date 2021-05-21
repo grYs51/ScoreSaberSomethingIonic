@@ -1,4 +1,4 @@
-import { IStoredUser } from './../../../Interfaces/StoringData/StoreUser';
+import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
 import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
 import { ProfileMethodsService } from './profile-methods.service';
@@ -36,7 +36,6 @@ export class ProfilePage implements OnInit {
       this.openModal();
     } else {
       // caching
-      await this.profileSrv.GetProfile(this.storedUser.id);
       await this.preset(this.storedUser.id);
       const toast = await this.toast.create({
         position: 'top',
@@ -48,6 +47,7 @@ export class ProfilePage implements OnInit {
   }
 
   async preset(userId: string) {
+    await this.profileSrv.GetProfile(userId);
     await this.profileSrv.GetFirstPageTopScore(userId);
     await this.profileSrv.GetFirstPageRecentScore(userId);
   }
@@ -59,9 +59,9 @@ export class ProfilePage implements OnInit {
     await modal.present();
 
     modal.onDidDismiss().then((data) => {
-      let obj: IFullProfile;
+      let obj: IStoredUser;
       obj = data.data;
-      this.preset(obj.playerInfo.playerId);
+      this.preset(obj.id);
       this.storedUser = this.ionicStorage.StoreUser(obj);
     });
   }

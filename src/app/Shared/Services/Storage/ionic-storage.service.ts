@@ -1,5 +1,4 @@
-import { IStoredUser } from './../../../Interfaces/StoringData/StoreUser';
-import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
+import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { UserDataService } from './../ScoreSaber/user-data.service';
 import { BaseStorageService } from './base-storage.service';
 import { Injectable } from '@angular/core';
@@ -18,16 +17,10 @@ export class IonicStorageService extends BaseStorageService {
     });
   }
 
-  public StoreUser(user: IFullProfile): IStoredUser {
-    const obj: IStoredUser = {
-      id: user.playerInfo.playerId,
-      name: user.playerInfo.playerName,
-      avatar: user.playerInfo.avatar,
-      country: user.playerInfo.country,
-    };
-    this.storage.set('root_user', JSON.stringify(obj));
-    this.userDataSrv.User = user;
-    return obj;
+  public StoreUser(user: IStoredUser): IStoredUser{
+    this.storage.set('root_user', JSON.stringify(user));
+    // this.userDataSrv.User = user;
+    return user;
   }
 
   public RemoveUser() {
