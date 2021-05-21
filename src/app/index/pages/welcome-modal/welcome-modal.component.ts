@@ -1,7 +1,5 @@
-import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
+import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
-import { ScoreSaberService } from '../../../Shared/Services/ScoreSaber/score-saber-api.service';
-import { ScoreSaberRegexService } from '../../../Shared/Services/Extensions/score-saber-regex.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, ToastController, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -14,8 +12,6 @@ export class WelcomeModalComponent implements OnInit {
 
   constructor(
     public viewCtrl: ModalController,
-    private SSRegex: ScoreSaberRegexService,
-    private scoreSaberSrv: ScoreSaberService,
     public userData: UserDataService,
     private toastController: ToastController
   ) { }
@@ -23,7 +19,7 @@ export class WelcomeModalComponent implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
 
   Input = '';
-  user: IFullProfile = null;
+  user: IStoredUser = null;
   isTyping = false;
 
   subscription: Subscription;
@@ -42,7 +38,6 @@ export class WelcomeModalComponent implements OnInit {
     const currentIndex = this.slides.getActiveIndex();
     currentIndex.then(async (res) => {
       if (res > 1 && !this.user) {
-        console.log('f');
         const toast = await this.toastController.create({
           color: 'danger',
           header: 'Wait!',
@@ -64,17 +59,9 @@ export class WelcomeModalComponent implements OnInit {
     });
   }
 
-  async checkRegex(input) {
-    this.Input = input;
-    const id = this.SSRegex.checkId(input);
-
-    if (id) {
-      try {
-        this.user = await this.scoreSaberSrv.FetchFullPlayerProfile(id);
-      } catch (e) {
-        console.log('hitting rate-limit');
-      }
-      console.log('userData', this.user);
-    }
+  test(test: IStoredUser) {
+    this.user = test;
+    this.slides.slideTo(2, 500);
+    console.log(test);
   }
 }

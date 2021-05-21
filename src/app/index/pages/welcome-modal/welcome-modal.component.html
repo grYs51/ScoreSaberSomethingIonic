@@ -11,49 +11,7 @@
       <div>
         <h1>Link your account</h1>
         <p>For the best experience, you should link your ScoreSaber account</p>
-        <ion-card class="center">
-          <div *ngIf="user">
-            <ion-item>
-              <ion-avatar slot="start">
-                <img class="ion-text-center" src="https://new.scoresaber.com{{user.playerInfo.avatar}}" />
-              </ion-avatar>
-              <ion-label>
-                <h3>
-                  {{ user.playerInfo.playerName }}
-                </h3>
-                <p>
-                  Rank: {{ user.playerInfo.rank }} -
-                  {{ user.playerInfo.country }}:
-                  {{ user.playerInfo.countryRank }}
-                </p>
-                <p>PP: {{ user.playerInfo.pp }}</p>
-              </ion-label>
-            </ion-item>
-          </div>
-          <div *ngIf="!user">
-            <ion-item>
-              <ion-avatar slot="start">
-                <ion-skeleton-text [animated]="Input.length > 0"></ion-skeleton-text>
-              </ion-avatar>
-              <ion-label>
-                <h3>
-                  <ion-skeleton-text [animated]="Input.length > 0" style="width: 50%"></ion-skeleton-text>
-                </h3>
-                <p>
-                  <ion-skeleton-text [animated]="Input.length > 0" style="width: 80%"></ion-skeleton-text>
-                </p>
-                <p>
-                  <ion-skeleton-text [animated]="Input.length > 0" style="width: 60%"></ion-skeleton-text>
-                </p>
-              </ion-label>
-            </ion-item>
-          </div>
-        </ion-card>
-        <ion-footer></ion-footer>
-        <ion-item>
-          <ion-input class="ion-padding text-center" [debounce]="500" (ionChange)="checkRegex(Input)"
-            placeholder="Enter ScoreSaberId" [(ngModel)]="Input"></ion-input>
-        </ion-item>
+        <addplayer (buttonClicked)="test($event)"></addplayer>
       </div>
     </ion-slide>
     <ion-slide>
