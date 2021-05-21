@@ -5,12 +5,6 @@
     </ion-item>
   </ion-virtual-scroll>
 
-  <ion-virtual-scroll [items]="dummies" *ngIf="!users && dummies">
-    <ion-item *virtualItem="let dummy">
-      <app-player-ghost-item></app-player-ghost-item>
-    </ion-item>
-  </ion-virtual-scroll>
-
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>

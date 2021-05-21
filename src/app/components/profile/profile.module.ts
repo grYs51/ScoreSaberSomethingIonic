@@ -7,15 +7,25 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from 'src/app/pipes/pipes.module';
-import { PlayerGhostItemComponent } from './player-ghost-item/player-ghost-item.component';
 @NgModule({
-  declarations: [PlayerItemComponent, ProfileBadgesComponent, ProfileHeaderComponent, ProfileSubHeaderComponent, PlayerGhostItemComponent],
+  declarations: [
+    PlayerItemComponent,
+    ProfileBadgesComponent,
+    ProfileHeaderComponent,
+    ProfileSubHeaderComponent,
+
+  ],
   imports: [
     CommonModule,
     IonicModule,
     PipesModule,
     FormsModule
   ],
-  exports: [PlayerItemComponent, ProfileBadgesComponent, ProfileHeaderComponent, ProfileSubHeaderComponent, PlayerGhostItemComponent]
+  exports: [
+    PlayerItemComponent,
+    ProfileBadgesComponent,
+    ProfileHeaderComponent,
+    ProfileSubHeaderComponent,
+  ]
 })
 export class ProfileModule { }

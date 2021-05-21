@@ -13,7 +13,6 @@ const routes: Routes = [
     component: MapsPage
   }
 ];
-
 @NgModule({
   imports: [
     CommonModule,

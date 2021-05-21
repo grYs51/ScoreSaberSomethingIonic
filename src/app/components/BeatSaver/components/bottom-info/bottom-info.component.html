@@ -23,7 +23,7 @@
         <ion-select [(ngModel)]="select" (ngModelChange)="onChangeObj($event)" interface="popover">
             <template
                 *ngFor="let diffSpecific of characteristics[selectedCharacteristic].difficulties | keyvalue; let i = index">
-                <ion-select-option  *ngIf="diffSpecific.value"><b>{{ diffSpecific.key | titlecase }}</b></ion-select-option>
+                <ion-select-option *ngIf="diffSpecific.value"><b>{{ diffSpecific.key | titlecase }}</b></ion-select-option>
             </template>
         </ion-select>
     </ion-item>
