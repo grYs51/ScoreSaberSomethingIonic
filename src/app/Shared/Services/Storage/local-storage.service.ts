@@ -43,7 +43,18 @@ export class LocalStorageService extends BaseStorageService {
   public RemoveUserScores() {
     localStorage.removeItem('root_user_scores');
     this.userDataSrv.Scores = null;
+  }
 
+  // Friends
+  public GetFriendsFromStorage(): IStoredUser {
+    throw new Error('Method not implemented.');
+  }
 
+  public StoreFriends(friends: IStoredUser[]) {
+    throw new Error('Method not implemented.');
+  }
+
+  public RemoveFriends() {
+    throw new Error('Method not implemented.');
   }
 }

@@ -1,4 +1,5 @@
-import { UserDataService } from './Shared/Services/ScoreSaber/user-data.service';
+import { IStoredUser } from './Interfaces/StoringData/StoreUser';
+import { ProfileMethodsService } from './home/Pages/profile/profile-methods.service';
 import { Component } from '@angular/core';
 import { CacheService } from 'ionic-cache';
 
@@ -20,8 +21,16 @@ export class AppComponent {
     { title: 'Settings', url: 'settings', icon: 'settings' },
   ];
 
-  constructor(cache: CacheService, public userData: UserDataService) {
+  constructor(cache: CacheService, private profileSrv: ProfileMethodsService) {
     cache.setDefaultTTL(60 * 2);
     cache.setOfflineInvalidate(false);
+    this.checkId();
+  }
+
+  async checkId() {
+    const user: IStoredUser = await this.profileSrv.init();
+    if (user != null) {
+      this.profileSrv.preset(user.id);
+    }
   }
 }

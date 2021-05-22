@@ -22,4 +22,10 @@ export abstract class BaseStorageService {
 
   public abstract RemoveUserScores(): null;
 
+  // Friends
+  public abstract GetFriendsFromStorage(): Promise<IStoredUser[]>;
+
+  public abstract StoreFriends(friends: IStoredUser[]);
+
+  public abstract RemoveFriends(): null;
 }

@@ -1,5 +1,6 @@
-import { ISongScore } from './../../../Interfaces/ScoreSaber/Scores/SongScore';
-import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
+import { ProfileMethodsService } from './../../../home/Pages/profile/profile-methods.service';
+import { ISongScore } from 'src/app/Interfaces/ScoreSaber/Scores/SongScore';
+import { IFullProfile } from 'src/app/Interfaces/ScoreSaber/Profile/FullProfile';
 import { Injectable } from '@angular/core';
 
 @Injectable({

@@ -42,11 +42,28 @@ export class IonicStorageService extends BaseStorageService {
     return null;
   }
 
+  // Friends
+  public async GetFriendsFromStorage(): Promise<IStoredUser[]> {
+    return await this.storage.get('friends').then((value: IStoredUser[]) => {
+      return value;
+    });
+  }
+  public StoreFriends(friends: IStoredUser[]): IStoredUser[] {
+    this.storage.set('friends', friends);
+    return friends;
+
+  }
+  public RemoveFriends(): null {
+    this.storage.remove('friends');
+    return null;
+  }
 
   constructor(private storage: Storage) {
     super();
     this.GetUserFromStorage();
     this.GetUserScoresFromStorage();
+    this.GetFriendsFromStorage();
   }
+
 
 }
