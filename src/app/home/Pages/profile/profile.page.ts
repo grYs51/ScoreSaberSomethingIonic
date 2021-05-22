@@ -6,7 +6,6 @@ import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { WelcomeModalComponent } from 'src/app/index/pages/welcome-modal/welcome-modal.component';
-import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './profile.page.html',
@@ -21,8 +20,9 @@ export class ProfilePage implements OnInit {
     private toast: ToastController
   ) { }
 
-  cachedUser: Observable<IFullProfile>;
-  profileKey: 'profile-cache';
+  // cachedUser: Observable<IFullProfile>;
+  // profileKey: 'profile-cache';
+
   storedUser: IStoredUser = null;
   user: IFullProfile = null;
 
@@ -30,13 +30,12 @@ export class ProfilePage implements OnInit {
   hasFullProfileLoaded = false;
 
   async ngOnInit(): Promise<void> {
-    this.storedUser = await this.ionicStorage.GetUserFromStorage();
-
+    this.storedUser = await this.profileSrv.init();
     if (!this.storedUser) {
       this.openModal();
     } else {
       // caching
-      await this.preset(this.storedUser.id);
+      await this.profileSrv.preset(this.storedUser.id);
       const toast = await this.toast.create({
         position: 'top',
         message: 'API request Done.',
@@ -46,11 +45,7 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  async preset(userId: string) {
-    await this.profileSrv.GetProfile(userId);
-    await this.profileSrv.GetFirstPageTopScore(userId);
-    await this.profileSrv.GetFirstPageRecentScore(userId);
-  }
+
 
   async openModal() {
     const modal = await this.modalController.create({
@@ -61,7 +56,7 @@ export class ProfilePage implements OnInit {
     modal.onDidDismiss().then((data) => {
       let obj: IStoredUser;
       obj = data.data;
-      this.preset(obj.id);
+      this.profileSrv.preset(obj.id);
       this.storedUser = this.ionicStorage.StoreUser(obj);
     });
   }
@@ -73,7 +68,7 @@ export class ProfilePage implements OnInit {
 
   async doRefresh(event) {
     await this.profileSrv.GetProfile(this.storedUser.id);
-    await this.preset(this.storedUser.id);
+    await this.profileSrv.preset(this.storedUser.id);
     event.target.complete();
   }
 }

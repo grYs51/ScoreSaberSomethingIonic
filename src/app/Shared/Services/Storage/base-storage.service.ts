@@ -1,4 +1,3 @@
-import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
 import { Injectable } from '@angular/core';
 import { ISongScore } from 'src/app/Interfaces/ScoreSaber/Scores/SongScore';
 import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
@@ -9,18 +8,18 @@ import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 })
 export abstract class BaseStorageService {
   constructor() {
-
   }
   public abstract GetUserFromStorage(): Promise<IStoredUser>;
 
-  public abstract StoreUser(user: IStoredUser);
+  public abstract StoreUser(user: IStoredUser): IStoredUser;
 
-  public abstract RemoveUser();
+  public abstract RemoveUser(): null;
 
   // Home_User_Scores
-  public abstract GetUserScoresFromStorage();
+  public abstract GetUserScoresFromStorage(): Promise<ISongScore[]>;
 
   public abstract StoreUserScores(scores: ISongScore[]);
 
-  public abstract RemoveUserScores();
+  public abstract RemoveUserScores(): null;
+
 }

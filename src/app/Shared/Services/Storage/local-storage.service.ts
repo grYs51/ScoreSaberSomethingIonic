@@ -1,4 +1,4 @@
-import { IFullProfile } from './../../../Interfaces/ScoreSaber/Profile/FullProfile';
+import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { BaseStorageService } from './base-storage.service';
 import { ISongScore } from 'src/app/Interfaces/ScoreSaber/Scores/SongScore';
 import { UserDataService } from '../ScoreSaber/user-data.service';
@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
- export class LocalStorageService extends BaseStorageService {
+export class LocalStorageService extends BaseStorageService {
+
   constructor(public userDataSrv: UserDataService) {
     super();
     this.GetUserFromStorage();
@@ -16,13 +17,12 @@ import { Injectable } from '@angular/core';
 
   // Home_User
   public GetUserFromStorage() {
-    console.log(this.userDataSrv);
-    this.userDataSrv.User = JSON.parse(localStorage.getItem('root_user'));
+    return JSON.parse(localStorage.getItem('root_user'));
   }
 
-  public StoreUser(user: IFullProfile) {
+  public StoreUser(user: IStoredUser) {
     localStorage.setItem('root_user', JSON.stringify(user));
-    this.userDataSrv.User = user;
+    return user;
   }
 
   public RemoveUser() {
@@ -43,6 +43,7 @@ import { Injectable } from '@angular/core';
   public RemoveUserScores() {
     localStorage.removeItem('root_user_scores');
     this.userDataSrv.Scores = null;
+
 
   }
 }
