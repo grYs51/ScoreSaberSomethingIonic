@@ -1,7 +1,7 @@
-import { ScoreSaberService } from '../../Shared/Services/ScoreSaber/score-saber-api.service';
-import { IFullProfile } from '../../Interfaces/ScoreSaber/Profile/FullProfile';
+import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
+import { IFullProfile } from 'src/app/Interfaces/ScoreSaber/Profile/FullProfile';
 import { ModalController } from '@ionic/angular';
-import { ISearchPlayerInfo } from '../../Interfaces/ScoreSaber/Search/SearchPlayerInfo';
+import { ISearchPlayerInfo } from 'src/app/Interfaces/ScoreSaber/Search/SearchPlayerInfo';
 import { Component, Input, OnInit } from '@angular/core';
 import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 import {

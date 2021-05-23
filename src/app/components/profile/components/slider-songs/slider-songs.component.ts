@@ -1,4 +1,4 @@
-import { IScoresPage } from './../../Interfaces/ScoreSaber/Scores/ScoresPage';
+import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-slider-songs',
