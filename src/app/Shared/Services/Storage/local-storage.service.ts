@@ -1,60 +1,44 @@
 import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { BaseStorageService } from './base-storage.service';
 import { ISongScore } from 'src/app/Interfaces/ScoreSaber/Scores/SongScore';
-import { UserDataService } from '../ScoreSaber/user-data.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStorageService extends BaseStorageService {
+export class LocalStorageService implements BaseStorageService {
 
-  constructor(public userDataSrv: UserDataService) {
-    super();
-    this.GetUserFromStorage();
-    this.GetUserScoresFromStorage();
-  }
+  constructor() { }
 
-  // Home_User
-  public GetUserFromStorage() {
+  public GetUserFromStorage(): Promise<IStoredUser> {
     return JSON.parse(localStorage.getItem('root_user'));
   }
-
-  public StoreUser(user: IStoredUser) {
+  public StoreUser(user: IStoredUser): IStoredUser {
     localStorage.setItem('root_user', JSON.stringify(user));
     return user;
   }
-
-  public RemoveUser() {
+  public RemoveUser(): null {
     localStorage.removeItem('root_user');
-    this.userDataSrv.User = null;
+    return null;
   }
-
-  // Home_User_Scores
-  public GetUserScoresFromStorage() {
-    this.userDataSrv.Scores = JSON.parse(localStorage.getItem('root_user_scores'));
+  public GetUserScoresFromStorage(): Promise<ISongScore[]> {
+    return JSON.parse(localStorage.getItem('root_user_scores'));
   }
-
   public StoreUserScores(scores: ISongScore[]) {
     localStorage.setItem('root_user_scores', JSON.stringify(scores));
-    this.userDataSrv.Scores = scores;
+    return scores;
   }
-
-  public RemoveUserScores() {
+  public RemoveUserScores(): null {
     localStorage.removeItem('root_user_scores');
-    this.userDataSrv.Scores = null;
+    return null;
   }
-
-  // Friends
-  public GetFriendsFromStorage(): IStoredUser {
+  public GetFriendsFromStorage(): Promise<IStoredUser[]> {
     throw new Error('Method not implemented.');
   }
-
-  public StoreFriends(friends: IStoredUser[]) {
+  public StoreFriends(friends: IStoredUser[]): IStoredUser[] {
     throw new Error('Method not implemented.');
   }
-
-  public RemoveFriends() {
+  public RemoveFriends(): null {
     throw new Error('Method not implemented.');
   }
 }

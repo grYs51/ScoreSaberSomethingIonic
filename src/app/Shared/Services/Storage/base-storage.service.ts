@@ -7,8 +7,9 @@ import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
   providedIn: 'root',
 })
 export abstract class BaseStorageService {
-  constructor() {
-  }
+  constructor() { }
+
+  // User
   public abstract GetUserFromStorage(): Promise<IStoredUser>;
 
   public abstract StoreUser(user: IStoredUser): IStoredUser;
@@ -25,7 +26,7 @@ export abstract class BaseStorageService {
   // Friends
   public abstract GetFriendsFromStorage(): Promise<IStoredUser[]>;
 
-  public abstract StoreFriends(friends: IStoredUser[]);
+  public abstract StoreFriends(friends: IStoredUser[]): IStoredUser[];
 
   public abstract RemoveFriends(): null;
 }

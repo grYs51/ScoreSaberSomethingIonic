@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root',
 })
-export class IonicStorageService extends BaseStorageService {
+export class IonicStorageService implements BaseStorageService {
 
   // Home_User
   public async GetUserFromStorage(): Promise<IStoredUser> {
@@ -59,10 +59,6 @@ export class IonicStorageService extends BaseStorageService {
   }
 
   constructor(private storage: Storage) {
-    super();
-    this.GetUserFromStorage();
-    this.GetUserScoresFromStorage();
-    this.GetFriendsFromStorage();
   }
 
 
