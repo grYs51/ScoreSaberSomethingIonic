@@ -1,6 +1,8 @@
+import { FriendsService } from './../friends/friends.service';
+import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonInfiniteScroll, IonVirtualScroll } from '@ionic/angular';
+import { IonInfiniteScroll, IonVirtualScroll, ToastController } from '@ionic/angular';
 import { IPlayersPage } from 'src/app/Interfaces/ScoreSaber/Search/PlayersPage';
 
 @Component({
@@ -15,7 +17,7 @@ export class LeaderboardPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
 
-  constructor(private scoreSaberSrv: ScoreSaberService) {}
+  constructor(private scoreSaberSrv: ScoreSaberService, private friendsService: FriendsService, private toast: ToastController) { }
 
   async ngOnInit(): Promise<void> {
     this.users = await this.scoreSaberSrv.FetchGlobalPlayers(this.page);
@@ -33,5 +35,20 @@ export class LeaderboardPage implements OnInit {
 
     event.target.complete();
     this.virtualScroll.checkEnd();
+  }
+
+  async addUserToFriends(friend: IStoredUser) {
+
+    const messageString = (await this.friendsService.AddFriendToFriendList(friend)).valueOf()
+      ? 'Player already exist!'
+      : 'Player addded!';
+
+    const toast = await this.toast.create({
+      position: 'top',
+      message: messageString,
+      duration: 1500,
+    });
+    toast.present();
+    return;
   }
 }

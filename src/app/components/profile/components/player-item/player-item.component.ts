@@ -1,12 +1,13 @@
-import { ISearchPlayerInfo } from './../../../../Interfaces/ScoreSaber/Search/SearchPlayerInfo';
+import { ISearchPlayerInfo } from 'src/app/Interfaces/ScoreSaber/Search/SearchPlayerInfo';
 import { ViewPlayerProfileComponent } from 'src/app/components/profile/view-player-profile/view-player-profile.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   NativePageTransitions,
   NativeTransitionOptions,
 } from '@ionic-native/native-page-transitions/ngx';
 import { ModalController } from '@ionic/angular';
 import { IBasePlayerInfo } from 'src/app/Interfaces/ScoreSaber/Shared/BasePlayerInfo';
+import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -16,16 +17,18 @@ import { IBasePlayerInfo } from 'src/app/Interfaces/ScoreSaber/Shared/BasePlayer
 })
 export class PlayerItemComponent implements OnInit {
   @Input() player: ISearchPlayerInfo | IBasePlayerInfo;
+
+  @Output() public slideButtonEvent = new EventEmitter<IStoredUser>();
+
   flag: boolean;
   constructor(
     private nativePageTransitions: NativePageTransitions,
     private modalController: ModalController
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.flag =  isSearchPlayer(this.player);
-    console.log(this.flag);
-    }
+    this.flag = isSearchPlayer(this.player);
+  }
 
   async viewPlayer() {
     const options: NativeTransitionOptions = {
@@ -43,6 +46,19 @@ export class PlayerItemComponent implements OnInit {
       },
     });
     await modal.present();
+  }
+
+  slideButton() {
+    this.slideButtonEvent.emit(this.makeStoredUser());
+  }
+
+  makeStoredUser(): IStoredUser {
+    return {
+      id: this.player.playerId,
+      name: this.player.playerName,
+      avatar: this.player.avatar,
+      country: this.player.country
+    };
   }
 }
 

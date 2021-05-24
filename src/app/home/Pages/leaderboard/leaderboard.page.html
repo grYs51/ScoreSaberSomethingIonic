@@ -1,7 +1,7 @@
 <ion-content>
   <ion-virtual-scroll [items]="users.players" *ngIf="users">
     <ion-item *virtualItem="let user">
-      <app-player-item [player]=user style="width: 100%;"></app-player-item>
+      <player-item [player]=user style="width: 100%;" (slideButtonEvent)="addUserToFriends($event)"></player-item>
     </ion-item>
   </ion-virtual-scroll>
 

@@ -1,37 +1,4 @@
-<!-- <ion-row class="ion-align-items-center ion-justify-content-center">
-  <ion-col size="1.6">
-    <p style="font-size: 82.5%;">#<strong>{{ player.rank }}</strong></p>
-  </ion-col>
-  <ion-col size="2">
-    <ion-thumbnail>
-      <img style="border-radius: 5px;" src="https://new.scoresaber.com{{ player.avatar }}" />
-    </ion-thumbnail>
-  </ion-col>
-  <ion-col class="ion-no-padding">
-    <div>
-      <span>
-        <img src="https://new.scoresaber.com/api/static/flags/{{ player.country | lowercase}}.png">
-        <strong style="font-size: large">
-          {{ player.playerName }}
-        </strong>
-      </span>
-      <br />
-      <span style="font-size: smaller"> {{ player.pp }} pp</span>
-    </div>
-  </ion-col>
-  <ion-col size="2">
-    <ion-button (click)="viewPlayer()" fill="clear" color="dark">
-      <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
-    </ion-button>
-  </ion-col>
-</ion-row>  -->
-
 <ion-item-sliding>
-  <!-- <ion-item-options side="start">
-    <ion-item-option >Share</ion-item-option>
-    <ion-item-option color="danger" >{{flag ? "Add friend" : "Remove friend"}}</ion-item-option>
-  </ion-item-options> -->
-
   <ion-item>
     <ion-row style="width: 100%;" class="ion-align-items-center ion-justify-content-center">
       <ion-col size="1.6">
@@ -61,8 +28,7 @@
       </ion-col>
     </ion-row>
   </ion-item>
-
   <ion-item-options side="end">
-    <ion-item-option expandable [color]="flag ? '': 'danger'">{{flag ? "Add friend" : "Remove"}}</ion-item-option>
+    <ion-item-option (click)="slideButton()" expandable [color]="flag ? '': 'danger'">{{flag ? "Add friend" : "Remove"}}</ion-item-option>
   </ion-item-options>
 </ion-item-sliding>
