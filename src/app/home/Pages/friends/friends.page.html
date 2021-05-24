@@ -1,3 +1,16 @@
-<p>
-  works
-</p>
+<ion-content>
+
+  <div *ngFor="let friend of sortBy(friendsService.friends) ">
+    <player-item (slideButtonEvent)="RemoveFriend($event)" *ngIf="friend.fullFriend" [player]="friend.fullFriend.playerInfo" ></player-item>
+  </div>
+
+  <div *ngIf="addUserItem">
+    <addplayer (buttonClicked)="addUser($event)" > </addplayer>
+  </div>
+
+  <div class=" ion-text-center ion-padding">
+    <span *ngIf="friendsService.friends != [] "> <strong> You have no friends... Yet</strong></span><br>
+    <ion-button (click)="showItem(true)" color="dark">Add friends</ion-button>
+  </div>
+
+</ion-content>
