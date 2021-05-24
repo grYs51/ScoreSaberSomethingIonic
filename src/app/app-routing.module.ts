@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home/profile',
+    redirectTo: 'profile',
     pathMatch: 'full'
   },
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home/profile',
+    redirectTo: 'profile',
   }
 ];
 

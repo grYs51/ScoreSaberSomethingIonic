@@ -1,4 +1,4 @@
-import { ComponentsModule } from 'src/app/components/components.module';
+import { ProfileComponentsModule } from 'src/app/components/profile/components/components.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ProfileComponentsModule
   ],
   declarations: [ProfilePage]
 })

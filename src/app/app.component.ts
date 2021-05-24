@@ -1,3 +1,4 @@
+import { UserDataService } from './Shared/Services/ScoreSaber/user-data.service';
 import { IStoredUser } from './Interfaces/StoringData/StoreUser';
 import { ProfileMethodsService } from './home/Pages/profile/profile-methods.service';
 import { Component } from '@angular/core';
@@ -10,18 +11,18 @@ import { CacheService } from 'ionic-cache';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Leaderboard', url: 'home/leaderboard', icon: 'diamond' },
-    { title: 'Maps', url: 'home/maps', icon: 'folder' },
-    { title: 'Ranked Maps', url: 'home/ranked_maps', icon: 'heart' },
-    { title: 'Profile', url: 'home/profile', icon: 'person' },
-    { title: 'Friends', url: 'home/friends', icon: 'people' },
+    { title: 'Leaderboard', url: 'leaderboard', icon: 'diamond' },
+    { title: 'Maps', url: 'maps', icon: 'folder' },
+    { title: 'Ranked Maps', url: 'ranked_maps', icon: 'heart' },
+    { title: 'Profile', url: 'profile', icon: 'person' },
+    { title: 'Friends', url: 'friends', icon: 'people' },
   ];
 
   public otherAppPages = [
     { title: 'Settings', url: 'settings', icon: 'settings' },
   ];
 
-  constructor(cache: CacheService, private profileSrv: ProfileMethodsService) {
+  constructor(cache: CacheService, private profileSrv: ProfileMethodsService, public userData: UserDataService) {
     cache.setDefaultTTL(60 * 2);
     cache.setOfflineInvalidate(false);
     this.checkId();
@@ -30,7 +31,7 @@ export class AppComponent {
   async checkId() {
     const user: IStoredUser = await this.profileSrv.init();
     if (user != null) {
-      this.profileSrv.preset(user.id);
+      this.profileSrv.GetProfile(user.id);
     }
   }
 }

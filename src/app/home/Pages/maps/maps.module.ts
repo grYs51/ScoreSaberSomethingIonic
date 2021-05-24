@@ -1,4 +1,4 @@
-import { PipesModule } from '../../../pipes/pipes.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 import { MapsPage } from './maps.page';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';

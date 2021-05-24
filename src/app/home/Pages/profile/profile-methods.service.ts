@@ -1,9 +1,10 @@
-import { UserDataService } from './../../../Shared/Services/ScoreSaber/user-data.service';
-import { IonicStorageService } from './../../../Shared/Services/Storage/ionic-storage.service';
-import { Injectable } from '@angular/core';
+import { UserDataService } from 'src/app/Shared/Services/ScoreSaber/user-data.service';
+import { IonicStorageService } from 'src/app/Shared/Services/Storage/ionic-storage.service';
 import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
 import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
+import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -29,13 +30,14 @@ export class ProfileMethodsService {
     this.userDataSrv.Scores = await this.store.GetUserScoresFromStorage();
     return await this.store.GetUserFromStorage();
   }
+
   async GetAllScores(id: string) {
     const obj: any[] = [];
     this.isLoading = true;
     for (let i = 1; i <= this.totalPages; i++) {
       const resp: IScoresPage =
         await this.scoreSaberSrv.FetchRecentSongsScorePage(id, i);
-      resp.scores.forEach((song) => { 
+      resp.scores.forEach((song) => {
         obj.push(song);
       });
       this.loadedPages = i;
@@ -53,7 +55,7 @@ export class ProfileMethodsService {
 
   getTotalPages() {
     this.totalPages = Math.ceil(
-      this.userDataSrv.User.scoreStats.totalPlayCount / 8
+      this.userDataSrv.User.scoreStats.rankedPlayCount / 8
     );
   }
 

@@ -21,7 +21,7 @@ export class BeatMapItemComponent implements OnInit {
   constructor(
     private nativePageTransitions: NativePageTransitions,
     private modalController: ModalController
-  ) {}
+  ) { }
 
   hasDiff(key) {
     return this.map.metadata.difficulties[Diffs[key]];
@@ -35,7 +35,7 @@ export class BeatMapItemComponent implements OnInit {
   }
   async showMap() {
     const options: NativeTransitionOptions = {
-      direction: 'left',
+      direction: 'bottom',
       duration: 400,
       slowdownfactor: -1,
       iosdelay: 50,

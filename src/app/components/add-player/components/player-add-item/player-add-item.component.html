@@ -4,12 +4,12 @@
     </ion-avatar>
     <ion-label>
         <h3>
-            {{ playerInfo.playerName }}
+            <img src="https://new.scoresaber.com/api/static/flags/{{ playerInfo.country | lowercase}}.png"> {{
+            playerInfo.playerName }}
         </h3>
         <p>
-            Rank: {{ playerInfo.rank }} -
-            {{playerInfo.country }}:
-            {{ playerInfo.countryRank }}
+            Rank: #{{ playerInfo.rank }} -
+            #{{ playerInfo.countryRank }}
         </p>
         <p>{{ playerInfo.pp }} pp</p>
     </ion-label>
@@ -19,3 +19,4 @@
         </ion-button>
     </ion-avatar>
 </ion-item>
+
