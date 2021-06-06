@@ -1,0 +1,11 @@
+- hosts: all
+  remote_user: root
+  become_method: sudo
+  become_user: root
+  tasks:
+# Update & upgrade container
+  - name: Apt-get update & upgrade
+    apt:
+      upgrade: yes
+      update_cache: yes
+    become: true
