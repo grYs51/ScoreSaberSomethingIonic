@@ -8,6 +8,7 @@ pipeline {
             steps {
                 sh 'npm install'
             }
+        }
         stage('NPM Build') {
             steps {
                 sh 'ionic cordova build android --debug'
