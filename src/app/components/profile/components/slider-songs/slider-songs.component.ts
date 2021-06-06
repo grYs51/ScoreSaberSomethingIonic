@@ -1,4 +1,3 @@
-import { ModalProfileSongsComponent } from './../modal-profile-songs/modal-profile-songs.component';
 import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
 import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 import { Component, Input, OnInit } from '@angular/core';
@@ -40,14 +39,14 @@ export class SliderSongsComponent implements OnInit {
 
     this.nativePageTransitions.slide(options);
 
-    const modal = await this.modalController.create({
-      component: ModalProfileSongsComponent ,
-      componentProps: {
-        id: this.id,
-        name: this.name
-      },
-    });
-    await modal.present();
+    // const modal = await this.modalController.create({
+    //   component: ModalProfileSongsComponent ,
+    //   componentProps: {
+    //     id: this.id,
+    //     name: this.name
+    //   },
+    // });
+    // await modal.present();
   }
 
 }
