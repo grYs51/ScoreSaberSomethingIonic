@@ -1,4 +1,4 @@
-import { IBasicProfile } from './../../../Interfaces/ScoreSaber/Profile/BasicProfile';
+import { IBasicProfile } from 'src/app/Interfaces/ScoreSaber/Profile/BasicProfile';
 import { IonicStorageService } from 'src/app/Shared/Services/Storage/ionic-storage.service';
 import { ScoreSaberService } from 'src/app/Shared/Services/ScoreSaber/score-saber-api.service';
 import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
@@ -16,8 +16,6 @@ export class FriendsService {
   constructor(private scoreSaberSrv: ScoreSaberService, private store: IonicStorageService) {
     this.GetFriendsFromStorage();
   }
-
-
 
   async GetFriendsFromStorage(): Promise<FriendsGroup[] | undefined> {
 

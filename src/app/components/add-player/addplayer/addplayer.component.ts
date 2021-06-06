@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IFullProfile } from 'src/app/Interfaces/ScoreSaber/Profile/FullProfile';
 import { IStoredUser } from 'src/app/Interfaces/StoringData/StoreUser';
 import { ScoreSaberRegexService } from 'src/app/Shared/Services/Extensions/score-saber-regex.service';
@@ -29,7 +29,6 @@ export class AddPlayerComponent implements OnInit {
       } catch (e) {
         console.log('No user with this id');
       }
-      console.log('userData', id);
     }
   }
 

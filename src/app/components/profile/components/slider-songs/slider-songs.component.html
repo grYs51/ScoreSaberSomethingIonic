@@ -1,20 +1,13 @@
 <ion-grid fixed class="border-bottom-soft">
   <ion-row>
     <ion-col size="6">
-      <div class="ion-text-left">
-        <span class="text-bold">{{ name }}</span>
-      </div>
-    </ion-col>
-    <ion-col size="6">
-      <div class="ion-text-right">
-        <ion-button expand="block" fill="clear" shape="round">
-          show more ...
-        </ion-button>
+      <div  class="ion-text-left">
+        <span style="font-size: medium;" expand="block" class="text-bold">{{ name }}</span>
       </div>
     </ion-col>
   </ion-row>
 
-  <ion-row class="ion-no-padding">
+  <ion-row *ngIf="songs"  class="ion-no-padding">
     <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
       <ion-slide *ngFor="let song of songs.scores" class="ion-no-padding" style="width: 150px; height: 200px">
         <ion-col>
@@ -24,7 +17,9 @@
         </ion-col>
       </ion-slide>
       <ion-slide class="ion-no-padding" style="width: 150px; height: 200px">
-        Show More
+        <ion-button (click)="openModal()" size="smaller" class="no-ion-padding" expand="block" fill="clear" shape="round">
+          show more ...
+        </ion-button>
       </ion-slide>
     </ion-slides>
   </ion-row>

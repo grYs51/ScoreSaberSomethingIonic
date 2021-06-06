@@ -59,20 +59,20 @@ export class ProfileMethodsService {
     );
   }
 
-  async GetFirstPageTopScore(userId: string) {
-    this.TopScore = await this.scoreSaberSrv.FetchTopSongsScorePage(userId, 1);
-  }
+  // async GetFirstPageTopScore(userId: string) {
+  //   this.TopScore = await this.scoreSaberSrv.FetchTopSongsScorePage(userId, 1);
+  // }
 
-  async GetFirstPageRecentScore(userId: string) {
-    this.RecentScore = await this.scoreSaberSrv.FetchRecentSongsScorePage(
-      userId,
-      1
-    );
-  }
+  // async GetFirstPageRecentScore(userId: string) {
+  //   this.RecentScore = await this.scoreSaberSrv.FetchRecentSongsScorePage(
+  //     userId,
+  //     1
+  //   );
+  // }
 
   async preset(userId: string) {
     await this.GetProfile(userId);
-    await this.GetFirstPageTopScore(userId);
-    await this.GetFirstPageRecentScore(userId);
+  //   await this.GetFirstPageTopScore(userId);
+  //   await this.GetFirstPageRecentScore(userId);
   }
 }

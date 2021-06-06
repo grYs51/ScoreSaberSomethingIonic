@@ -69,15 +69,15 @@
   </div>
 
   <!-- TOP_SONGS -->
-  <div *ngIf="profileSrv.TopScore" class="ion-text-center animate__animated animate__slideInUp animate__fast"
+  <div *ngIf="storedUser"  class="ion-text-center animate__animated animate__slideInUp animate__fast"
     style="animation-delay: 500ms">
-    <app-slider-songs [songs]="profileSrv.TopScore" [name]="'Top Score'"></app-slider-songs>
+    <app-slider-songs [id]="storedUser.id" [name]="'Top Score'"></app-slider-songs>
   </div>
 
   <!-- RECENT_SONGS -->
-  <div *ngIf="profileSrv.RecentScore" class="ion-text-center animate__animated animate__slideInUp animate__fast"
+  <div *ngIf="storedUser" class="ion-text-center animate__animated animate__slideInUp animate__fast"
     style="animation-delay: 700ms">
-    <app-slider-songs [songs]="profileSrv.RecentScore" [name]="'Recent Score'"></app-slider-songs>
+    <app-slider-songs [id]="storedUser.id" [name]="'Recent Score'"></app-slider-songs>
   </div>
 
   <!-- CARD -->

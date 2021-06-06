@@ -7,7 +7,6 @@
   <div *ngIf="addUserItem">
     <addplayer (buttonClicked)="addUser($event)" > </addplayer>
   </div>
-
   <div class=" ion-text-center ion-padding">
     <span *ngIf="friendsService.friends != [] "> <strong> You have no friends... Yet</strong></span><br>
     <ion-button (click)="showItem(true)" color="dark">Add friends</ion-button>

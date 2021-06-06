@@ -8,6 +8,7 @@ import { PlayerItemComponent } from './player-item/player-item.component';
 import { ProfileBadgesComponent } from './profile-badges/profile-badges.component';
 import { ProfileHeaderComponent } from './profile-header/profile-header.component';
 import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-header.component';
+import { ModalProfileSongsComponent } from './modal-profile-songs/modal-profile-songs.component';
 
 
 
@@ -17,7 +18,8 @@ import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-head
     ProfileBadgesComponent,
     ProfileHeaderComponent,
     ProfileSubHeaderComponent,
-    SliderSongsComponent
+    SliderSongsComponent,
+    ModalProfileSongsComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,8 @@ import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-head
     ProfileBadgesComponent,
     ProfileHeaderComponent,
     ProfileSubHeaderComponent,
-    SliderSongsComponent]
+    SliderSongsComponent,
+    ModalProfileSongsComponent
+  ]
 })
 export class ProfileComponentsModule { }
