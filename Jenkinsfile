@@ -5,10 +5,11 @@ pipeline {
         }
 
     tools {nodejs "node"}
-    
+
     stages {
         stage('NPM Setup') {
             steps {
+                sh 'npm install -g ionic cordova'
                 sh 'npm install'
             }
         }
