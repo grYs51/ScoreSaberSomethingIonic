@@ -21,12 +21,12 @@
 
     <!-- TOP_SCORES -->
     <div *ngIf="topScore" >
-        <app-slider-songs [songs]=topScore [name]="'Top Score'"></app-slider-songs>
+        <app-slider-songs [id]=user.playerId [name]="'Top Score'"></app-slider-songs>
     </div>
 
     <!-- RECENT_SCORES -->
     <div *ngIf="recentScore" >
-        <app-slider-songs [songs]=recentScore [name]="'Recent Score'"></app-slider-songs>
+        <app-slider-songs [id]=user.playerId [name]="'Recent Score'"></app-slider-songs>
     </div>
 
 </ion-content>
