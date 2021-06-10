@@ -28,11 +28,11 @@
       name: "install xinetd"
     - 
       command: 
-        cmd: "wget http://192.168.0.231:5000/cmk/check_mk/agents/check-mk-agent_2.0.0p1-1_all.deb"
+        cmd: "wget http://192.168.0.231:8081/cmk/check_mk/agents/check-mk-agent_2.0.0p5-1_all.deb"
       name: "wget checkmk agent"
     - 
       command: 
-        cmd: "dpkg -i check-mk-agent_2.0.0p1-1_all.deb"
+        cmd: "dpkg -i check-mk-agent_2.0.0p5-1_all.deb"
       name: "dpkg checkmk agent"
     - 
       name: "check if project folder exists"
