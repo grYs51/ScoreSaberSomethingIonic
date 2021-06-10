@@ -28,7 +28,7 @@
       name: "install xinetd"
     - 
       command: 
-        cmd: "wget http://172.18.0.4:5000/cmk/check_mk/agents/check-mk-agent_2.0.0p1-1_all.deb"
+        cmd: "wget http://192.168.0.231:5000/cmk/check_mk/agents/check-mk-agent_2.0.0p1-1_all.deb"
       name: "wget checkmk agent"
     - 
       command: 
