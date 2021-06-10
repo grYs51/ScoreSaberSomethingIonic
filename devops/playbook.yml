@@ -3,9 +3,57 @@
   become_method: sudo
   become_user: root
   tasks:
-# Update & upgrade container
+
   - name: Apt-get update & upgrade
     apt:
       upgrade: yes
       update_cache: yes
+    become: true
+
+  - name: Install git
+    apt:
+      name: git
+      state: present
+  - name: install npm
+    apt:
+      name: npm
+      state: present
+
+  - name: install xinetd 
+    apt:
+      name: xinetd
+      state: present
+
+  - name: wget checkmk agent
+    command:
+      cmd: wget http://172.18.0.4:5000/cmk/check_mk/agents/check-mk-agent_2.0.0p1-1_all.deb
+
+  - name: dpkg checkmk agent
+    command:
+      cmd: dpkg -i check-mk-agent_2.0.0p1-1_all.deb
+
+    - name: check if project folder exists
+    stat:
+      path: /project
+    register: stat_project
+  
+  - name: delete if project folder exists
+    command:
+      cmd: rm -r /project
+    become:  true
+    when: stat_project.stat.exists
+
+  - name: create /project folder
+    command:
+      cmd: mkdir /project
+
+  - name: download repo
+    git:
+      repo: https://github.com/grYs51/ScoreSaberSomethingIonic.git
+      dest: /project
+      force: true
+
+  - name: test npm
+    command:
+      cmd: npm -v
     become: true
