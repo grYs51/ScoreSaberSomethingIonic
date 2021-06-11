@@ -69,8 +69,9 @@
     - 
       become: true
       command: 
-        cmd: "npm install -g @ionic/cli"
+        cmd: "npm install -g cordova"
       name: "Install Cordova"
+
     - 
       become: true
       npm: 
@@ -80,7 +81,7 @@
       name: "building app"
       command:
         chdir: /project/ScoreSaberSomethingIonic
-        cmd: "npm run-script build"
+        cmd: "ionic build"
 
     - name: "delete apache stock website"
       file:
