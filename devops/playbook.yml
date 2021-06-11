@@ -90,6 +90,6 @@
       name: "Install modules"
     -
       name: "building app"
-        command:
-          chdir: /project/ScoreSaberSomethingIonic
-          cmd: "npm cordova build"
+      command:
+        chdir: /project/ScoreSaberSomethingIonic
+        cmd: "npm cordova build"
