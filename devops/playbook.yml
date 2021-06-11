@@ -73,18 +73,6 @@
       name: "Install Cordova"
     - 
       become: true
-      command: 
-        cmd: "ls"
-      name: "ls"
-      
-    - 
-      become: true
-      command: 
-        cmd: "pwd"
-      name: "pwd"
-      
-    - 
-      become: true
       npm: 
         path: "/project/ScoreSaberSomethingIonic"
       name: "Install modules"
@@ -92,4 +80,19 @@
       name: "building app"
       command:
         chdir: /project/ScoreSaberSomethingIonic
-        cmd: "npm cordova build"
+        cmd: "ionic build"
+
+    - name: "delete apache stock website"
+      file:
+        path: "var/www/html"
+        state: absent
+    
+    - name: "move build to apache"
+      command:
+          cmd: mv /project/ScoreSaberSomethingIonic/www /var/www/html
+
+    - name: "restart apache"
+      command:
+        cmd: "service apache2 restart"
+      become: true
+          
