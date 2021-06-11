@@ -78,10 +78,10 @@
         path: "/project/ScoreSaberSomethingIonic"
       name: "Install modules"
     -
-      name: "update audit fix app"
+      name: "install -- M O D U L E S"
       command:
         chdir: /project/ScoreSaberSomethingIonic
-        cmd: "npm audit fix"
+        cmd: "npm install"
     -
       name: "building app prod"
       command:
