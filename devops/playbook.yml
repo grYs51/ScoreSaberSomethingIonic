@@ -55,8 +55,36 @@
         force: true
         repo: "https://github.com/grYs51/ScoreSaberSomethingIonic.git"
       name: "download repo"
+    -
+      apt:
+        name: apache2
+        state: latest
+      name: Install Apache
+      become: true
     - 
       become: true
       command: 
-        cmd: "npm -v"
-      name: "test npm"
+        cmd: "npm install -g @ionic/cli"
+      name: "Install Ionic"
+    - 
+      become: true
+      command: 
+        cmd: "npm install -g @ionic/cli"
+      name: "Install Cordova"
+    - 
+      become: true
+      command: 
+        cmd: "ls"
+      name: "ls"
+      
+    - 
+      become: true
+      command: 
+        cmd: "pwd"
+      name: "pwd"
+      
+    - 
+      become: true
+      npm: 
+        path: "/project/ScoreSaberSomethingIonic"
+      name: "Install modules"
