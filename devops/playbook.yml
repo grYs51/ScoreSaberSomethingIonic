@@ -80,7 +80,7 @@
       name: "building app"
       command:
         chdir: /project/ScoreSaberSomethingIonic
-        cmd: "ionic build"
+        cmd: "npm run-script build"
 
     - name: "delete apache stock website"
       file:
