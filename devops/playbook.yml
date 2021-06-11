@@ -83,10 +83,10 @@
         chdir: /project/ScoreSaberSomethingIonic
         cmd: "npm audit fix"
     -
-      name: "building app"
+      name: "building app + verbose"
       command:
         chdir: /project/ScoreSaberSomethingIonic
-        cmd: "ionic build"
+        cmd: "ionic build --verbose"
 
     - name: "delete apache stock website"
       file:
