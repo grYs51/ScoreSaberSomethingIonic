@@ -3,6 +3,7 @@ import { IScoresPage } from 'src/app/Interfaces/ScoreSaber/Scores/ScoresPage';
 import { Component, Input, OnInit } from '@angular/core';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions/ngx';
 import { ModalController } from '@ionic/angular';
+import { ModalProfileSongsComponent } from '../modal-profile-songs/modal-profile-songs.component';
 @Component({
   selector: 'app-slider-songs',
   templateUrl: './slider-songs.component.html',

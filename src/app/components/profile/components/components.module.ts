@@ -1,3 +1,4 @@
+import { ModalProfileSongsComponent } from './modal-profile-songs/modal-profile-songs.component';
 import { SliderSongsComponent } from './slider-songs/slider-songs.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,6 @@ import { ProfileHeaderComponent } from './profile-header/profile-header.componen
 import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-header.component';
 
 
-
 @NgModule({
   declarations: [
     PlayerItemComponent,
@@ -18,6 +18,7 @@ import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-head
     ProfileHeaderComponent,
     ProfileSubHeaderComponent,
     SliderSongsComponent,
+    ModalProfileSongsComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +32,7 @@ import { ProfileSubHeaderComponent } from './profile-sub-header/profile-sub-head
     ProfileHeaderComponent,
     ProfileSubHeaderComponent,
     SliderSongsComponent,
+    ModalProfileSongsComponent
   ]
 })
 export class ProfileComponentsModule { }

@@ -1,8 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start" (click)="dismiss()">
-      <ion-back-button defaultHref=""></ion-back-button>
-      <ion-title>{{ "Settings" | titlecase }}</ion-title>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <div *ngIf="UserData">
+    <ion-row class="ion-padding">
+      <ion-col size="6">
+        <div class="ion-text-left">
+          <span class="text-bold">Default</span>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-card>
+      <ion-card-content>
+        <form>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked">User ID</ion-label>
+              <ion-input type="text" value="{{ UserData.User.playerInfo.playerId }}"></ion-input>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-label>{{ 'SETTINGS_OPTION1' }}</ion-label>
+              <ion-toggle></ion-toggle>
+            </ion-item>
+  
+            <ion-item>
+              <ion-label>{{ 'SETTINGS_OPTION2' }}</ion-label>
+              <ion-input></ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-label>{{ 'SETTINGS_OPTION3' }}</ion-label>
+              <ion-select>
+                <ion-select-option value="1" checked="true">1</ion-select-option>
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+              </ion-select>
+            </ion-item>
+  
+            <button ion-item>{{ 'SETTINGS_PROFILE_BUTTON' }}</button>
+          </ion-list>
+  
+          <ion-list>
+            <ion-item>
+              <ion-label>{{ 'SETTINGS_OPTION4' }}</ion-label>
+              <ion-input></ion-input>
+            </ion-item> -->
+          </ion-list>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
